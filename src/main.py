@@ -55,8 +55,9 @@ def import_images_groups(api: sly.Api, task_id: int, context: dict, state: dict,
 
         grouped_images_n = len(images_by_group_paths)
         single_images_n = len(single_images_paths)
-        g.my_app.logger.info(
-            f"{grouped_images_n} grouped images were uploaded to {dataset_name}")
+        if grouped_images_n > 0:
+            g.my_app.logger.info(
+                f"{grouped_images_n} grouped images were uploaded to {dataset_name}")
         if single_images_n > 0:
             g.my_app.logger.warn(
                 f"{single_images_n} images in {dataset_name} weren't attached to any group")
