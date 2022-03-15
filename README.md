@@ -5,9 +5,7 @@
 
 <p align="center">
   <a href="#Overview">Overview</a> •
-  <a href="#Preparation">Preparation</a> •
-  <a href="#How-To-Run">How To Run</a> •
-  <a href="#How-To-Use">How To Use</a>
+  <a href="#How-To-Run">How To Run</a>
 </p>
   
 [![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](https://ecosystem.supervise.ly/apps/supervisely-ecosystem/import-pascal-voc)
@@ -19,12 +17,13 @@
 
 </div>
 
-## Overview
+# Overview
 Import images groups in [Supervisely format](https://docs.supervise.ly/data-organization/00_ann_format_navi) and creates a new project in the current `Team` -> `Workspace`.
 
 Application key points:
 * Define group tag name in modal window when starting the application
 * Grouped images will be tagged with a user defined tag (tag value type: `ANY_STRING`). e.g. tag: group_name value: car_id_105
+* If grouped image doesn't have annotation, it will be automatically created
 
 ### Project structure have to be the following:
 
@@ -59,7 +58,7 @@ Application key points:
                 │   ├── car_357_front.jpg.json
                 │   └── car_357_top.jpg.json
                 ├── image_1.jpg.json }
-                ├── image_2.jpg.json } # non grouped image will be imported as a regular image
+                ├── image_2.jpg.json } # non grouped annotation will be imported as a regular annotation
                 └── image_3.jpg.json }
 ```
 
@@ -92,22 +91,19 @@ Application key points:
             │   ├── car_357_front.jpg.json
             │   └── car_357_top.jpg.json
             ├── image_1.jpg.json }
-            ├── image_2.jpg.json } # non grouped image will be imported as a regular image
+            ├── image_2.jpg.json } # non grouped annotation will be imported as a regular annotation
             └── image_3.jpg.json }
 ```
 
-## How To Run 
-**Step 1**: Add app to your team from [Ecosystem](https://ecosystem.supervise.ly/apps/import-images-groups).
+# How To Run 
+### 1. Add [Import Images Groups](https://ecosystem.supervise.ly/apps/import-images-groups) app to your team from Ecosystem
+<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/import-images-groups" src="https://i.imgur.com/wAiE0ld.png" width="70%"/>
 
-**Step 2**: Run app from `Team` -> `Files` page.
-
-After running the app you will be redirected to the `Tasks` page.
-
-<img src=""/>
+### 2. Run app from `Team` -> `Files` page.
+<img src="https://i.imgur.com/Y0dTDzC.png"/>
 
 
-**Step 3**: Define group tag name in modal window.
+### 3. Define group tag name in modal window.
+<img src="https://i.imgur.com/oMCsnvK.png" width="70%"/>
 
-Once app is started, new task will appear in workspace tasks. Wait for message `Application is started ...` (1) and then press `Open` button (2).
-
-<img src=""/>
+### 4. Once app is started, new task will appear in workspace tasks. Wait for the app to process your data.
