@@ -5,6 +5,7 @@ from functools import partial
 from typing import Callable, List, Tuple
 
 import supervisely as sly
+from supervisely.io.json import load_json_file
 from supervisely.io.fs import (dir_exists, file_exists, get_file_ext,
                                get_file_name, get_file_name_with_ext,
                                silent_remove)
@@ -100,7 +101,7 @@ def add_group_name_tag(project_meta: sly.ProjectMeta, group_tag_name: str) -> Tu
 def get_project_meta(path_to_project: str) -> sly.ProjectMeta:
     """Get project meta from project directory or creates new meta if not found."""
     project_meta_path = os.path.join(path_to_project, "meta.json")
-    if project_meta_path in os.listdir(path_to_project):
+    if file_exists(project_meta_path):
         project_meta_path = os.path.join(path_to_project, "meta.json")
         project_meta = sly.ProjectMeta.from_json(
             sly.json.load_json_file(project_meta_path))
@@ -110,7 +111,7 @@ def get_project_meta(path_to_project: str) -> sly.ProjectMeta:
 
 
 def process_images_groups(dataset_path: str, group_name_tag_meta: sly.TagMeta, single_images_names: List[str]) -> Tuple[
-        List[str], List[str], List[sly.Annotation]]:
+    List[str], List[str], List[sly.Annotation]]:
     """Forms lists with images paths, names and anns by image groups."""
     images_by_group_paths, images_by_group_names, images_by_group_anns = [], [], []
 
@@ -138,7 +139,7 @@ def process_images_groups(dataset_path: str, group_name_tag_meta: sly.TagMeta, s
             ann_path = os.path.join(ann_dir, group_name, ann_name)
             if file_exists(ann_path):
                 ann = sly.Annotation.from_json(
-                    ann_path, g.project_meta).add_tag(group_tag)
+                    load_json_file(ann_path), g.project_meta).add_tag(group_tag)
             else:
                 ann = sly.Annotation.from_img_path(
                     image_path).add_tag(group_tag)
