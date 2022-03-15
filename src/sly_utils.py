@@ -109,7 +109,7 @@ def get_project_meta(path_to_project: str) -> sly.ProjectMeta:
     return project_meta
 
 
-def process_images_groups(dataset_path: str, group_name_tag_meta: sly.TagMeta) -> Tuple[
+def process_images_groups(dataset_path: str, group_name_tag_meta: sly.TagMeta, single_images_names: List[str]) -> Tuple[
         List[str], List[str], List[sly.Annotation]]:
     """Forms lists with images paths, names and anns by image groups."""
     images_by_group_paths, images_by_group_names, images_by_group_anns = [], [], []
@@ -127,7 +127,7 @@ def process_images_groups(dataset_path: str, group_name_tag_meta: sly.TagMeta) -
         group_tag = sly.Tag(meta=group_name_tag_meta, value=group_name)
         for image_path in images_paths:
             image_name = get_file_name_with_ext(image_path)
-            if image_name in images_by_group_names:
+            if image_name in images_by_group_names or image_name in single_images_names:
                 image_name = get_free_name(
                     group_name=group_name, image_name=image_name)
 

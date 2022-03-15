@@ -28,10 +28,11 @@ def import_images_groups(api: sly.Api, task_id: int, context: dict, state: dict,
                                total_cnt=len(datasets_paths))
     for dataset_path in datasets_paths:
         dataset_name = os.path.basename(os.path.normpath(dataset_path))
-        images_by_group_paths, images_by_group_names, images_by_group_anns = sly_utils.process_images_groups(
-            dataset_path=dataset_path, group_name_tag_meta=group_name_tag_meta)
         single_images_paths, single_images_names, single_images_anns = sly_utils.process_single_images(
             dataset_path=dataset_path)
+        images_by_group_paths, images_by_group_names, images_by_group_anns = sly_utils.process_images_groups(
+            dataset_path=dataset_path, group_name_tag_meta=group_name_tag_meta, single_images_names=single_images_names)
+
 
         ds_images_paths = images_by_group_paths + single_images_paths
         ds_images_names = images_by_group_names + single_images_names
