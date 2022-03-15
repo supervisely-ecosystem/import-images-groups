@@ -33,7 +33,6 @@ def import_images_groups(api: sly.Api, task_id: int, context: dict, state: dict,
         images_by_group_paths, images_by_group_names, images_by_group_anns = sly_utils.process_images_groups(
             dataset_path=dataset_path, group_name_tag_meta=group_name_tag_meta, single_images_names=single_images_names)
 
-
         ds_images_paths = images_by_group_paths + single_images_paths
         ds_images_names = images_by_group_names + single_images_names
         ds_images_anns = images_by_group_anns + single_images_anns
@@ -58,9 +57,10 @@ def import_images_groups(api: sly.Api, task_id: int, context: dict, state: dict,
         single_images_n = len(single_images_paths)
         g.my_app.logger.info(
             f"{grouped_images_n} grouped images were uploaded to {dataset_name}")
-        g.my_app.logger.warn(
-            f"{single_images_n} images in {dataset_name} weren't attached to any group")
-        ds_progress.iter_done_report()
+        if single_images_n > 0:
+            g.my_app.logger.warn(
+                f"{single_images_n} images in {dataset_name} weren't attached to any group")
+            ds_progress.iter_done_report()
 
     g.my_app.stop()
 
