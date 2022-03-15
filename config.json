@@ -1,0 +1,19 @@
+{
+  "name": "Import images groups",
+  "type": "app",
+  "categories": [
+    "Import"
+  ],
+  "description": "Import images in groups with user selected tag",
+  "docker_image": "supervisely/base-py-sdk:6.7.22",
+  "main_script": "src/main.py",
+  "modal_template": "src/modal.html",
+  "modal_template_state": {"groupTagName": "group_name"},
+  "task_location": "workspace_tasks",
+  "icon": "",
+  "icon_cover": false,
+  "icon_background": "#FFFFFF",
+  "context_menu": {
+    "target": ["files_file", "files_folder"]
+  }
+}
