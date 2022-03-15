@@ -1,12 +1,13 @@
 import functools
 import os
 import shutil
-from typing import List, Tuple, Callable
 from functools import partial
+from typing import Callable, List, Tuple
 
 import supervisely as sly
-from supervisely.io.fs import (dir_exists, file_exists, get_file_name,
-                               get_file_name_with_ext, get_file_ext)
+from supervisely.io.fs import (dir_exists, file_exists, get_file_ext,
+                               get_file_name, get_file_name_with_ext,
+                               silent_remove)
 
 import sly_globals as g
 
@@ -27,9 +28,11 @@ def get_progress_cb(api: sly.Api, task_id: int, message: str, total: int, is_siz
 
 
 def get_free_name(group_name: str, image_name: str) -> str:
+    """Generates new name for duplicated group image name."""
     image_name, image_ext = get_file_name(image_name), get_file_ext(image_name)
     suffix = 1
-    res_name = '{}_{}_{:03d}.{}'.format(image_name, group_name, suffix, image_ext)
+    res_name = '{}_{}_{:03d}.{}'.format(
+        image_name, group_name, suffix, image_ext)
     return res_name
 
 
@@ -56,7 +59,7 @@ def download_data_from_team_files(api: sly.Api, task_id, remote_path: str, save_
                                     remote_path=remote_path,
                                     local_save_path=project_path,
                                     progress_cb=progress_cb)
-        return project_path
+
     elif api.file.exists(g.TEAM_ID, remote_path):
         save_archive_path = os.path.join(
             save_path, get_file_name_with_ext(remote_path))
@@ -71,10 +74,11 @@ def download_data_from_team_files(api: sly.Api, task_id, remote_path: str, save_
                           local_save_path=save_archive_path,
                           progress_cb=progress_cb)
         project_path = os.path.join(save_path, get_file_name(remote_path))
-        shutil.unpack_archive(save_path, project_path)
-        return project_path
+        shutil.unpack_archive(save_archive_path, save_path)
+        silent_remove(save_archive_path)
     else:
         raise Exception("{} doesn't exists".format(remote_path))
+    return project_path
 
 
 def add_group_name_tag(project_meta: sly.ProjectMeta, group_tag_name: str) -> Tuple[sly.ProjectMeta, sly.TagMeta]:
@@ -103,7 +107,7 @@ def get_project_meta(path_to_project: str) -> sly.ProjectMeta:
 
 
 def process_images_groups(dataset_path: str, group_name_tag_meta: sly.TagMeta) -> Tuple[
-    List[str], List[str], List[sly.Annotation]]:
+        List[str], List[str], List[sly.Annotation]]:
     """Forms lists with images paths, names and anns by image groups."""
     images_by_group_paths, images_by_group_names, images_by_group_anns = [], [], []
 
@@ -121,7 +125,8 @@ def process_images_groups(dataset_path: str, group_name_tag_meta: sly.TagMeta) -
         for image_path in images_paths:
             image_name = get_file_name_with_ext(image_path)
             if image_name in images_by_group_names:
-                image_name = get_free_name(group_name=group_name, image_name=image_name)
+                image_name = get_free_name(
+                    group_name=group_name, image_name=image_name)
 
             images_by_group_paths.append(image_path)
             images_by_group_names.append(image_name)
@@ -135,7 +140,6 @@ def process_images_groups(dataset_path: str, group_name_tag_meta: sly.TagMeta) -
                 ann = sly.Annotation.from_img_path(
                     image_path).add_tag(group_tag)
             images_by_group_anns.append(ann)
-
     return images_by_group_paths, images_by_group_names, images_by_group_anns
 
 
@@ -161,5 +165,4 @@ def process_single_images(dataset_path: str) -> Tuple[List[str], List[str], List
         else:
             ann = sly.Annotation.from_img_path(image_path)
         single_images_anns.append(ann)
-
     return single_images_paths, single_images_names, single_images_anns

@@ -1,8 +1,8 @@
 import os
+
 import supervisely as sly
 from supervisely.app.v1.app_service import AppService
 from supervisely.io.fs import mkdir
-
 
 my_app: AppService = AppService()
 
