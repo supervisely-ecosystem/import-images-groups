@@ -11,7 +11,7 @@ import sly_utils
 def import_images_groups(api: sly.Api, task_id: int, context: dict, state: dict, app_logger) -> None:
     """Import images in groups with selected tag."""
     project_dir = sly_utils.download_data_from_team_files(
-        api=api, remote_path=g.INPUT_PATH, save_path=g.STORAGE_DIR)
+        api=api, task_id=task_id, remote_path=g.INPUT_PATH, save_path=g.STORAGE_DIR)
     project_name = os.path.basename(os.path.normpath(project_dir))
     g.project_meta = sly_utils.get_project_meta(path_to_project=project_dir)
     g.project_meta, group_name_tag_meta = sly_utils.add_group_name_tag(
@@ -23,6 +23,9 @@ def import_images_groups(api: sly.Api, task_id: int, context: dict, state: dict,
 
     datasets_paths = [os.path.join(project_dir, item) for item in os.listdir(
         project_dir) if os.path.isdir(os.path.join(project_dir, item))]
+
+    ds_progress = sly.Progress(message="Importing Datasets",
+                               total_cnt=len(datasets_paths))
     for dataset_path in datasets_paths:
         dataset_name = os.path.basename(os.path.normpath(dataset_path))
         images_by_group_paths, images_by_group_names, images_by_group_anns = sly_utils.process_images_groups(
@@ -37,10 +40,23 @@ def import_images_groups(api: sly.Api, task_id: int, context: dict, state: dict,
         dataset = api.dataset.create(
             project_id=new_project.id, name=dataset_name, change_name_if_conflict=True)
 
-        dst_image_infos = api.image.upload_paths(
-            dataset_id=dataset.id, names=ds_images_names, paths=ds_images_paths)
-        dst_image_ids = [img_info.id for img_info in dst_image_infos]
-        api.annotation.upload_anns(img_ids=dst_image_ids, anns=ds_images_anns)
+        batch_progress = sly.Progress(message="Processing images",
+                                      total_cnt=len(ds_images_paths))
+        for ds_images_paths_batch, ds_images_names_batch, ds_images_anns_batch in zip(sly.batched(ds_images_paths, 50),
+                                                                                      sly.batched(
+                                                                                          ds_images_names, 50),
+                                                                                      sly.batched(ds_images_anns, 50)):
+            dst_image_infos = api.image.upload_paths(
+                dataset_id=dataset.id, names=ds_images_names_batch, paths=ds_images_paths_batch)
+            dst_image_ids = [img_info.id for img_info in dst_image_infos]
+            api.annotation.upload_anns(
+                img_ids=dst_image_ids, anns=ds_images_anns_batch)
+            batch_progress.iters_done_report(len(ds_images_paths_batch))
+
+        single_images_q = len(single_images_paths)
+        g.my_app.logger.warn(
+            f"{single_images_q} images in {dataset_name} weren't attached to any group")
+        ds_progress.iter_done_report()
 
     g.my_app.stop()
 
@@ -57,4 +73,5 @@ if __name__ == '__main__':
     sly.main_wrapper("main", main)
 
 # @TODO: add progress bars
-# @TODO: g.my_app.logger messages with info
+# @TODO: add batches
+# @TODO: g.my_app.logger messages with info and warnings

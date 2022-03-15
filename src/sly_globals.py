@@ -22,8 +22,4 @@ PROJECT_NAME: str = 'group-images'
 STORAGE_DIR: str = my_app.data_dir
 mkdir(STORAGE_DIR, True)
 
-
-project_info: sly.Project = None
 project_meta: sly.ProjectMeta = None
-
-
