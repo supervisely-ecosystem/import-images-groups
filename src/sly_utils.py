@@ -87,14 +87,17 @@ def download_data_from_team_files(api: sly.Api, task_id, remote_path: str, save_
 
 def add_group_name_tag(project_meta: sly.ProjectMeta, group_tag_name: str) -> Tuple[sly.ProjectMeta, sly.TagMeta]:
     """Adds user input tag name to project meta."""
-    group_tag = project_meta.get_tag_meta(group_tag_name)
-    if group_tag is None:
+    group_tag_meta = project_meta.get_tag_meta(group_tag_name)
+    if group_tag_meta is None:
         group_tag_meta = sly.TagMeta(
             group_tag_name, sly.TagValueType.ANY_STRING)
         project_meta = project_meta.add_tag_meta(group_tag_meta)
-    else:
-        g.my_app.logger.error(f"Tag with name {group_tag_name} already exists")
-        raise Exception(f"Tag with name {group_tag_name} already exists")
+    elif group_tag_meta.value_type != sly.TagValueType.ANY_STRING:
+        error_message = (f"Tag {group_tag_name} already exists and has"
+                         f" incompatible value type ({group_tag_meta.value_type})."
+                         f" Please, input another name for group tag.")
+        g.my_app.logger.error(error_message)
+        raise Exception(error_message)
     return project_meta, group_tag_meta
 
 
