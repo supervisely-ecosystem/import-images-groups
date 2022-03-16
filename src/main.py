@@ -13,10 +13,7 @@ def import_images_groups(api: sly.Api, task_id: int, context: dict, state: dict,
     project_dir = sly_utils.download_data_from_team_files(
         api=api, task_id=task_id, remote_path=g.INPUT_PATH, save_path=g.STORAGE_DIR)
     project_name = os.path.basename(os.path.normpath(project_dir))
-    g.project_meta = sly_utils.get_project_meta(path_to_project=project_dir)
-    g.project_meta, group_name_tag_meta = sly_utils.add_group_name_tag(
-        project_meta=g.project_meta, group_tag_name=g.GROUP_TAG_NAME)
-
+    g.project_meta, group_name_tag_meta = sly_utils.create_project_meta(group_tag_name=g.GROUP_TAG_NAME)
     new_project = api.project.create(
         workspace_id=g.WORKSPACE_ID, name=project_name, change_name_if_conflict=True)
     api.project.update_meta(id=new_project.id, meta=g.project_meta.to_json())
