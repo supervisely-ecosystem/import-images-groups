@@ -31,9 +31,8 @@ def get_free_name(group_name: str, image_name: str) -> str:
     """Generates new name for duplicated group image name."""
     original_name = image_name
     image_name, image_ext = get_file_name(image_name), get_file_ext(image_name)
-    suffix = 1
-    res_name = '{}_{}_{:03d}{}'.format(
-        image_name, group_name, suffix, image_ext)
+    res_name = '{}_{}{}'.format(
+        image_name, group_name, image_ext)
     g.my_app.logger.warn(
         f"Duplicated group image name found. Image: {original_name} has been renamed to {res_name}")
     return res_name
