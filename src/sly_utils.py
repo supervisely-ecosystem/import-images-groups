@@ -31,12 +31,31 @@ def get_free_name(group_name: str, image_name: str) -> str:
     """Generates new name for duplicated group image name."""
     original_name = image_name
     image_name, image_ext = get_file_name(image_name), get_file_ext(image_name)
-    suffix = 1
-    res_name = '{}_{}_{:03d}{}'.format(
-        image_name, group_name, suffix, image_ext)
+    res_name = '{}_{}{}'.format(
+        image_name, group_name, image_ext)
     g.my_app.logger.warn(
         f"Duplicated group image name found. Image: {original_name} has been renamed to {res_name}")
     return res_name
+
+
+def get_group_tag_id(api: sly.Api, project_id: int, group_name_tag_meta: sly.TagMeta) -> int:
+    """Get group name tag id from created project on supervisely instance."""
+    project_meta_json = api.project.get_meta(project_id)
+    project_meta = sly.ProjectMeta.from_json(project_meta_json)
+
+    group_name_tag_meta = project_meta.get_tag_meta(group_name_tag_meta.name)
+    group_name_tag_id = group_name_tag_meta.sly_id
+    return group_name_tag_id
+
+
+def update_project_settings(api: sly.Api, project_id: int, group_name_tag_meta: sly.TagMeta) -> None:
+    """Updates project settings on supervisely instance to show grouped items by group tag."""
+    group_name_tag_id = get_group_tag_id(api=api, project_id=project_id, group_name_tag_meta=group_name_tag_meta)
+    project_settings = {
+        "groupImages": True,
+        "groupImagesByTagId": group_name_tag_id
+    }
+    api.project.update_settings(id=project_id, settings=project_settings)
 
 
 def remote_dir_exists(api: sly.Api, team_id: int, remote_directory: str) -> bool:
@@ -84,7 +103,7 @@ def download_data_from_team_files(api: sly.Api, task_id, remote_path: str, save_
     return project_path
 
 
-def create_project_meta(group_tag_name: str) -> Tuple[sly.ProjectMeta, sly.TagMeta]:
+def create_project_meta_with_group_tag(group_tag_name: str) -> Tuple[sly.ProjectMeta, sly.TagMeta]:
     """Creates project meta with tag name defined by user input."""
     group_tag_meta = sly.TagMeta(
         group_tag_name, sly.TagValueType.ANY_STRING)
@@ -96,9 +115,8 @@ def process_images_groups(dataset_path: str, group_name_tag_meta: sly.TagMeta, s
     List[str], List[str], List[sly.Annotation]]:
     """Forms lists with images paths, names and anns by image groups."""
     images_by_group_paths, images_by_group_names, images_by_group_anns = [], [], []
-    images_dir = os.path.join(dataset_path, "img")
-    images_groups_paths = [os.path.join(images_dir, item) for item in os.listdir(images_dir) if
-                           dir_exists(os.path.join(images_dir, item))]
+    images_groups_paths = [os.path.join(dataset_path, item) for item in os.listdir(dataset_path) if
+                           dir_exists(os.path.join(dataset_path, item))]
 
     for image_group_path in images_groups_paths:
         images_paths = [os.path.join(image_group_path, item) for item in os.listdir(
@@ -121,9 +139,8 @@ def process_images_groups(dataset_path: str, group_name_tag_meta: sly.TagMeta, s
 def process_single_images(dataset_path: str) -> Tuple[List[str], List[str], List[sly.Annotation]]:
     """Forms lists with images paths, names and anns for non group images."""
     single_images_paths, single_images_names, single_images_anns = [], [], []
-    images_dir = os.path.join(dataset_path, "img")
-    images_paths = [os.path.join(images_dir, item) for item in os.listdir(images_dir) if
-                    file_exists(os.path.join(images_dir, item))]
+    images_paths = [os.path.join(dataset_path, item) for item in os.listdir(dataset_path) if
+                    file_exists(os.path.join(dataset_path, item))]
 
     for image_path in images_paths:
         ann = sly.Annotation.from_img_path(image_path)
