@@ -21,9 +21,16 @@
 Import images groups in [Supervisely format](https://docs.supervise.ly/data-organization/00_ann_format_navi) and creates a new project in the current `Team` -> `Workspace`.
 
 Application key points:
+* Group images via group tag
 * Define group tag name in modal window when starting the application
-* Grouped images will be tagged with a user defined tag (tag value type: `ANY_STRING`). e.g. tag: group_name value: car_id_105
-* If grouped image doesn't have annotation, it will be automatically created
+* Grouped images will be tagged with a user defined tag (tag value type: `ANY_STRING`). e.g. tag: `car id` value: `106`
+
+
+<div align="center" markdown>
+  <img src="https://i.imgur.com/kKbN2GR.png"/>
+  <h3><a href="https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.1/cars_catalog.zip">:arrow_down: Download example data </a></h3>
+</div>
+
 
 ### Project structure have to be the following:
 
@@ -34,32 +41,19 @@ Application key points:
 └── project.zip
     └── project
         └── dataset_1
-            ├── img
-            │   ├── car_id_105
-            │   │   ├── car_105_front.jpg
-            │   │   └── car_105_top.jpg
-            │   ├── car_id_202
-            │   │   ├── car_202_front.jpg
-            │   │   └── car_202_top.jpg
-            │   ├── car_id_357
-            │   │   ├── car_357_front.jpg
-            │   │   └── car_357_top.jpg
-            │   ├── image_1.jpg }
-            │   ├── image_2.jpg } # non grouped image will be imported as a regular image
-            │   └── image_3.jpg }
-            └── ann # optional
+            └── img
                 ├── car_id_105
-                │   ├── car_105_front.jpg.json
-                │   └── car_105_top.jpg.json
+                │   ├── car_105_front.jpg
+                │   └── car_105_top.jpg
                 ├── car_id_202
-                │   ├── car_202_front.jpg.json
-                │   └── car_202_top.jpg.json
+                │   ├── car_202_front.jpg
+                │   └── car_202_top.jpg
                 ├── car_id_357
-                │   ├── car_357_front.jpg.json
-                │   └── car_357_top.jpg.json
-                ├── image_1.jpg.json }
-                ├── image_2.jpg.json } # non grouped annotation will be imported as a regular annotation
-                └── image_3.jpg.json }
+                │   ├── car_357_front.jpg
+                │   └── car_357_top.jpg
+                ├── image_1.jpg }
+                ├── image_2.jpg } # non grouped image will be imported as a regular image
+                └── image_3.jpg }
 ```
 
 ### Folder:
@@ -67,32 +61,19 @@ Application key points:
 .
 └── project
     └── dataset_1
-        ├── img
-        │   ├── car_id_105
-        │   │   ├── car_105_front.jpg
-        │   │   └── car_105_top.jpg
-        │   ├── car_id_202
-        │   │   ├── car_202_front.jpg
-        │   │   └── car_202_top.jpg
-        │   ├── car_id_357
-        │   │   ├── car_357_front.jpg
-        │   │   └── car_357_top.jpg
-        │   ├── image_1.jpg }
-        │   ├── image_2.jpg } # non grouped image will be imported as a regular image
-        │   └── image_3.jpg }
-        └── ann # optional
+        └── img
             ├── car_id_105
-            │   ├── car_105_front.jpg.json
-            │   └── car_105_top.jpg.json
+            │   ├── car_105_front.jpg
+            │   └── car_105_top.jpg
             ├── car_id_202
-            │   ├── car_202_front.jpg.json
-            │   └── car_202_top.jpg.json
+            │   ├── car_202_front.jpg
+            │   └── car_202_top.jpg
             ├── car_id_357
-            │   ├── car_357_front.jpg.json
-            │   └── car_357_top.jpg.json
-            ├── image_1.jpg.json }
-            ├── image_2.jpg.json } # non grouped annotation will be imported as a regular annotation
-            └── image_3.jpg.json }
+            │   ├── car_357_front.jpg
+            │   └── car_357_top.jpg
+            ├── image_1.jpg }
+            ├── image_2.jpg } # non grouped image will be imported as a regular image
+            └── image_3.jpg }
 ```
 
 # How To Run 
