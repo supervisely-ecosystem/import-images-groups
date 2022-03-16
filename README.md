@@ -1,10 +1,11 @@
 <div align="center" markdown>
-<img src="https://i.imgur.com/5HiyGWS.png"/>
+<img src="https://i.imgur.com/PgQwjEV.png"/>
 
 # Import Images Groups
 
 <p align="center">
   <a href="#Overview">Overview</a> •
+  <a href="#How-To-Run">How To Run</a> •
   <a href="#How-To-Run">How To Run</a>
 </p>
   
@@ -18,19 +19,15 @@
 </div>
 
 # Overview
-Import images groups in [Supervisely format](https://docs.supervise.ly/data-organization/00_ann_format_navi) and creates a new project in the current `Team` -> `Workspace`.
+Import images groups and creates a new project in the current `Team` -> `Workspace`.
 
 Application key points:
-* Group images via group tag
-* Define group tag name in modal window when starting the application
+* Group images via group tag, defined by user input
 * Grouped images will be tagged with a user defined tag (tag value type: `ANY_STRING`). e.g. tag: `car id` value: `106`
-* Works with `.nrrd` format
+* Works with `.nrrd` format (2D only)
 
 
-<div align="center" markdown>
-  <img src="https://i.imgur.com/kKbN2GR.png"/>
-  <h3><a href="https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.1/cars_catalog.zip">:arrow_down: Download example data </a></h3>
-</div>
+### [:arrow_down: Download example data](https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.1/cars_catalog.zip)
 
 
 ### Project structure have to be the following:
@@ -87,3 +84,13 @@ Application key points:
 <img src="https://i.imgur.com/oMCsnvK.png" width="70%"/>
 
 ### 4. Once app is started, new task will appear in workspace tasks. Wait for the app to process your data.
+
+# How To Use
+### 1. Open imported project.
+<img src="https://i.imgur.com/oAPlnmq.png"/>
+
+### 2. Open dataset using new image annotator.
+<img src="https://i.imgur.com/sSCtInH.png"/>
+
+### 3. To display single images switch off `Group Images` option.
+<img src="https://i.imgur.com/t0kD4rt.png"/>
