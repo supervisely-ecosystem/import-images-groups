@@ -20,6 +20,6 @@ else:
 
 PROJECT_NAME: str = 'group-images'
 STORAGE_DIR: str = my_app.data_dir
-# mkdir(STORAGE_DIR, True) for debug
+mkdir(STORAGE_DIR, True)
 
 project_meta: sly.ProjectMeta = None

@@ -24,6 +24,7 @@ Application key points:
 * Group images via group tag
 * Define group tag name in modal window when starting the application
 * Grouped images will be tagged with a user defined tag (tag value type: `ANY_STRING`). e.g. tag: `car id` value: `106`
+* Works with `.nrrd` format
 
 
 <div align="center" markdown>
@@ -41,27 +42,6 @@ Application key points:
 └── project.zip
     └── project
         └── dataset_1
-            └── img
-                ├── car_id_105
-                │   ├── car_105_front.jpg
-                │   └── car_105_top.jpg
-                ├── car_id_202
-                │   ├── car_202_front.jpg
-                │   └── car_202_top.jpg
-                ├── car_id_357
-                │   ├── car_357_front.jpg
-                │   └── car_357_top.jpg
-                ├── image_1.jpg }
-                ├── image_2.jpg } # non grouped image will be imported as a regular image
-                └── image_3.jpg }
-```
-
-### Folder:
-```text
-.
-└── project
-    └── dataset_1
-        └── img
             ├── car_id_105
             │   ├── car_105_front.jpg
             │   └── car_105_top.jpg
@@ -74,6 +54,25 @@ Application key points:
             ├── image_1.jpg }
             ├── image_2.jpg } # non grouped image will be imported as a regular image
             └── image_3.jpg }
+```
+
+### Folder:
+```text
+.
+└── project
+    └── dataset_1
+        ├── car_id_105
+        │   ├── car_105_front.jpg
+        │   └── car_105_top.jpg
+        ├── car_id_202
+        │   ├── car_202_front.jpg
+        │   └── car_202_top.jpg
+        ├── car_id_357
+        │   ├── car_357_front.jpg
+        │   └── car_357_top.jpg
+        ├── image_1.jpg }
+        ├── image_2.jpg } # non grouped image will be imported as a regular image
+        └── image_3.jpg }
 ```
 
 # How To Run 
