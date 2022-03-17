@@ -95,4 +95,5 @@ Application key points:
 <img src="https://i.imgur.com/sSCtInH.png"/>
 
 **Step 3.** To display single images switch off `Images Grouping` setting.
+
 <img src="https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.2/enabled-disabled.gif"/>
