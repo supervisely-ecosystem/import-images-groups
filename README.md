@@ -1,5 +1,5 @@
 <div align="center" markdown>
-<img src="https://i.imgur.com/PgQwjEV.png"/>
+<img src="https://i.imgur.com/HQW7m9F.png"/>
 
 # Import Images Groups
 
