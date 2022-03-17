@@ -92,5 +92,5 @@ Application key points:
 ### 2. Open dataset using new image annotator.
 <img src="https://i.imgur.com/sSCtInH.png"/>
 
-### 3. To display single images switch off `Group Images` option.
-<img src="https://i.imgur.com/t0kD4rt.png"/>
+### 3. To display single images switch off `Images Grouping` setting.
+<img src="https://i.imgur.com/ecGCOCD.png"/>
