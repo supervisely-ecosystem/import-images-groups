@@ -41,13 +41,13 @@ Application key points:
 └── project.zip
     └── project # project directory - name of created project
         └── dataset_1 # dataset directory - name of the dataset
-            ├── car_id_105 # group directory - group name (will be assigned as value to tag)
+            ├── car_id_105 # group directory - name of the group (tag value)
             │   ├── car_105_front.jpg
             │   └── car_105_top.jpg
-            ├── car_id_202 # group directory - group name (will be assigned as value to tag)
+            ├── car_id_202 # group directory - name of the group (tag value)
             │   ├── car_202_front.jpg
             │   └── car_202_top.jpg
-            ├── car_id_357 # group directory - group name (will be assigned as value to tag)
+            ├── car_id_357 # group directory - name of the group (tag value)
             │   ├── car_357_front.jpg
             │   └── car_357_top.jpg
             ├── image_1.jpg }
@@ -60,13 +60,13 @@ Application key points:
 .
 └── project # project directory - name of created project
     └── dataset_1 # dataset directory - name of the dataset
-        ├── car_id_105 # group directory - group name (will be assigned as value to tag)
+        ├── car_id_105 # group directory - name of the group (tag value)
         │   ├── car_105_front.jpg
         │   └── car_105_top.jpg
-        ├── car_id_202 # group directory - group name (will be assigned as value to tag)
+        ├── car_id_202 # group directory - name of the group (tag value)
         │   ├── car_202_front.jpg
         │   └── car_202_top.jpg
-        ├── car_id_357 # group directory - group name (will be assigned as value to tag)
+        ├── car_id_357 # group directory - name of the group (tag value)
         │   ├── car_357_front.jpg
         │   └── car_357_top.jpg
         ├── image_1.jpg }
