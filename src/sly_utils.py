@@ -38,37 +38,9 @@ def get_free_name(group_name: str, image_name: str) -> str:
     return res_name
 
 
-def get_group_tag_id(api: sly.Api, project_id: int, group_name_tag_meta: sly.TagMeta) -> int:
-    """Get group name tag id from created project on supervisely instance."""
-    project_meta_json = api.project.get_meta(project_id)
-    project_meta = sly.ProjectMeta.from_json(project_meta_json)
-
-    group_name_tag_meta = project_meta.get_tag_meta(group_name_tag_meta.name)
-    group_name_tag_id = group_name_tag_meta.sly_id
-    return group_name_tag_id
-
-
-def update_project_settings(api: sly.Api, project_id: int, group_name_tag_meta: sly.TagMeta) -> None:
-    """Updates project settings on supervisely instance to show grouped items by group tag."""
-    group_name_tag_id = get_group_tag_id(api=api, project_id=project_id, group_name_tag_meta=group_name_tag_meta)
-    project_settings = {
-        "groupImages": True,
-        "groupImagesByTagId": group_name_tag_id
-    }
-    api.project.update_settings(id=project_id, settings=project_settings)
-
-
-def remote_dir_exists(api: sly.Api, team_id: int, remote_directory: str) -> bool:
-    """Check if directory exists in remote Team Files storage."""
-    files_infos = api.file.list(team_id=team_id, path=remote_directory)
-    if len(files_infos) > 1:
-        return True
-    return False
-
-
 def download_data_from_team_files(api: sly.Api, task_id, remote_path: str, save_path: str) -> str:
     """Download data from remote directory in Team Files."""
-    if remote_dir_exists(api, g.TEAM_ID, remote_path):
+    if api.file.dir_exists(api, g.TEAM_ID, remote_path):
         project_path = os.path.join(
             save_path, os.path.basename(os.path.normpath(remote_path)))
         sizeb = api.file.get_directory_size(g.TEAM_ID, remote_path)
