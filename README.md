@@ -22,75 +22,77 @@
 Import images groups and creates a new project in the current `Team` -> `Workspace`.
 
 Application key points:
-* Group images via group tag, defined by user input
-* Grouped images will be tagged with a user defined tag (tag value type: `ANY_STRING`). e.g. tag: `car id` value: `106`
-* Works with `.nrrd` format (2D only)
+* All images in groups in the created project will be tagged with a group tag defined by user in the modal window
+* `Images Grouping` option will be turned on by default in the created project
+* Images will be grouped by tag's value
+* Tag value is defined by group directory name
+* Works with `.nrrd` image format (2D only)
 
 
-### [:arrow_down: Download example data](https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.1/cars_catalog.zip)
+[**Download example data**](https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.1/cars_catalog.zip)
 
 
-### Project structure have to be the following:
+**Project structure have to be the following:**
 
-### Archive:
-**(`zip`, `tar`, `gztar`, `bztar`, or `xztar` or any other registered unpacking format)**
+**Archive:**
+`zip`, `tar`, `gztar`, `bztar`, or `xztar` or any other registered unpacking format
 ```text
 .
 └── project.zip
-    └── project
-        └── dataset_1
-            ├── car_id_105
+    └── project # project directory - name of created project
+        └── dataset_1 # dataset directory - name of the dataset
+            ├── car_id_105 # group directory - group name (will be assigned as value to tag)
             │   ├── car_105_front.jpg
             │   └── car_105_top.jpg
-            ├── car_id_202
+            ├── car_id_202 # group directory - group name (will be assigned as value to tag)
             │   ├── car_202_front.jpg
             │   └── car_202_top.jpg
-            ├── car_id_357
+            ├── car_id_357 # group directory - group name (will be assigned as value to tag)
             │   ├── car_357_front.jpg
             │   └── car_357_top.jpg
             ├── image_1.jpg }
-            ├── image_2.jpg } # non grouped image will be imported as a regular image
+            ├── image_2.jpg } # images without groups will be uploaded as a regular images
             └── image_3.jpg }
 ```
 
-### Folder:
+**Folder:**
 ```text
 .
-└── project
-    └── dataset_1
-        ├── car_id_105
+└── project # project directory - name of created project
+    └── dataset_1 # dataset directory - name of the dataset
+        ├── car_id_105 # group directory - group name (will be assigned as value to tag)
         │   ├── car_105_front.jpg
         │   └── car_105_top.jpg
-        ├── car_id_202
+        ├── car_id_202 # group directory - group name (will be assigned as value to tag)
         │   ├── car_202_front.jpg
         │   └── car_202_top.jpg
-        ├── car_id_357
+        ├── car_id_357 # group directory - group name (will be assigned as value to tag)
         │   ├── car_357_front.jpg
         │   └── car_357_top.jpg
         ├── image_1.jpg }
-        ├── image_2.jpg } # non grouped image will be imported as a regular image
+        ├── image_2.jpg } # images without groups will be uploaded as a regular images
         └── image_3.jpg }
 ```
 
 # How To Run 
-### 1. Add [Import Images Groups](https://ecosystem.supervise.ly/apps/import-images-groups) app to your team from Ecosystem
+**Step 1.** Add [Import Images Groups](https://ecosystem.supervise.ly/apps/import-images-groups) app to your team from Ecosystem
 <img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/import-images-groups" src="https://i.imgur.com/wAiE0ld.png" width="70%"/>
 
-### 2. Run app from `Team` -> `Files` page.
+**Step 2.** Run app from `Team` -> `Files` page.
 <img src="https://i.imgur.com/Y0dTDzC.png"/>
 
 
-### 3. Define group tag name in modal window.
+**Step 3.** Define group tag name in modal window.
 <img src="https://i.imgur.com/oMCsnvK.png" width="70%"/>
 
-### 4. Once app is started, new task will appear in workspace tasks. Wait for the app to process your data.
+**Step 4.** Once app is started, new task will appear in workspace tasks. Wait for the app to process your data.
 
 # How To Use
-### 1. Open imported project.
+**Step 1.** Open imported project.
 <img src="https://i.imgur.com/oAPlnmq.png"/>
 
-### 2. Open dataset using new image annotator.
+**Step 2.** Open dataset using new image annotator.
 <img src="https://i.imgur.com/sSCtInH.png"/>
 
-### 3. To display single images switch off `Images Grouping` setting.
-<img src="https://i.imgur.com/ecGCOCD.png"/>
+**Step 3.** To display single images switch off `Images Grouping` setting.
+<img src="https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.2/enabled-disabled.gif"/>
