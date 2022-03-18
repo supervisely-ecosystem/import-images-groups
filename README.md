@@ -7,7 +7,9 @@
   <a href="#Overview">Overview</a> •
   <a href="#Preparation">Preparation</a> •
   <a href="#How-To-Run">How To Run</a> •
-  <a href="#How-To-Use">How To Use</a>
+  <a href="#How-To-Use">How To Use</a> •
+  <a href="#Additional-Settings">Additional Settings</a> •
+  <a href="#Demo-Video">Demo Video</a>
 </p>
   
 [![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](https://ecosystem.supervise.ly/apps/supervisely-ecosystem/import-pascal-voc)
@@ -166,3 +168,9 @@ Prepare project and drag and drop it to `Team Files`.
 
 **3.** Windowing tool is available when working with `.nrrd` files. It helps to filter pixels to see bones, air, liquids and etc
 <img src="https://i.imgur.com/gW37Tyn.png"/>
+
+
+# Demo Video
+<a data-key="sly-embeded-video-link" href="https://www.youtube.com/watch?v=4JOjK2HlLXo" data-video-code="4JOjK2HlLXo">
+    <img src="https://i.imgur.com/mb4CPK1.png" alt="SLY_EMBEDED_VIDEO_LINK"  width="70%">
+</a>
