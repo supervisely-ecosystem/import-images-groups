@@ -73,12 +73,11 @@ Project structure have to be the following:
         ├── image_2.jpg } # images without groups will be uploaded as a regular images
         └── image_3.jpg }
 ```
+[**Download example data**](https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.1/cars_catalog.zip)
 
 Prepare project and drag and drop it to `Team Files`.
 
 <img src="https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.2/drag-n-drop.gif"/>
-
-[**Download example data**](https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.1/cars_catalog.zip)
 
 # How To Run 
 **Step 1.** Add [Import Images Groups](https://ecosystem.supervise.ly/apps/import-images-groups) app to your team from Ecosystem
