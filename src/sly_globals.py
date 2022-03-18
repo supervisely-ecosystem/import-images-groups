@@ -12,11 +12,6 @@ GROUP_TAG_NAME: str = os.environ.get("modal.state.groupTagName")
 
 INPUT_DIR: str = os.environ.get("modal.state.slyFolder")
 INPUT_FILE: str = os.environ.get("modal.state.slyFile")
-INPUT_PATH: str = None
-if INPUT_FILE is None:
-    INPUT_PATH = INPUT_DIR
-else:
-    INPUT_PATH = INPUT_FILE
 
 PROJECT_NAME: str = 'group-images'
 STORAGE_DIR: str = my_app.data_dir

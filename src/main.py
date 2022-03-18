@@ -10,8 +10,7 @@ import sly_utils
 @sly.timeit
 def import_images_groups(api: sly.Api, task_id: int, context: dict, state: dict, app_logger) -> None:
     """Import images in groups with selected tag."""
-    project_dir = sly_utils.download_data_from_team_files(
-        api=api, task_id=task_id, remote_path=g.INPUT_PATH, save_path=g.STORAGE_DIR)
+    project_dir = sly_utils.download_data_from_team_files(api=api, task_id=task_id, save_path=g.STORAGE_DIR)
     project_name = os.path.basename(os.path.normpath(project_dir))
     g.project_meta, group_name_tag_meta = sly_utils.create_project_meta_with_group_tag(group_tag_name=g.GROUP_TAG_NAME)
     new_project = api.project.create(
