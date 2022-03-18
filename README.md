@@ -32,47 +32,103 @@ Application key points:
 
 # Preparation
 
-Project structure have to be the following:
+**Archive** `zip`, `tar`, `gztar`, `bztar`, or `xztar` or any other registered unpacking format
 
-**Archive:**
-`zip`, `tar`, `gztar`, `bztar`, or `xztar` or any other registered unpacking format
+Archive structure:
+
 ```text
 .
-└── project.zip
-    └── project # project directory - name of created project
-        └── dataset_1 # dataset directory - name of the dataset
-            ├── car_id_105 # group directory - name of the group (tag value)
+└── my_project.zip
+    └── cars catalog 
+        └── used cars 
+            ├── 105 
             │   ├── car_105_front.jpg
             │   └── car_105_top.jpg
-            ├── car_id_202 # group directory - name of the group (tag value)
+            ├── 202 
             │   ├── car_202_front.jpg
             │   └── car_202_top.jpg
-            ├── car_id_357 # group directory - name of the group (tag value)
+            ├── 357 
             │   ├── car_357_front.jpg
             │   └── car_357_top.jpg
-            ├── image_1.jpg }
-            ├── image_2.jpg } # images without groups will be uploaded as a regular images
-            └── image_3.jpg }
+            ├── car_401_front.jpg
+            ├── car_401_top.jpg
+            └── car_401_side.jpg
 ```
 
-**Folder:**
+Archive structure explained:
+
+1. Archive must contain only 1 project directory. Name of the project directory will be used for created supervisely project.
+2. Inside project directory must be dataset directory. Name of the dataset directory will be used for created dataset. 
+3. Group directories must be populated with images and placed inside dataset directory. All images inside groups will be tagged.
+4. All images in the root dataset directory will be uploaded as a regular images and will not be tagged.
+
+
+Example of created project using the example below and tag `car id` as user input:
+* Project name: cars catalog
+* Dataset name: used cars
+* Images:
+
+Image name  |  Tag
+:-------------------------:|:-----------------------------------:
+car_105_front.jpg  | `car id`: `105`
+car_105_top.jpg    | `car id`: `105`
+car_202_front.jpg  | `car id`: `202`
+car_202_top.jpg    | `car id`: `202`
+car_357_front.jpg  | `car id`: `357`
+car_357_top.jpg    | `car id`: `357`
+car_401_front.jpg  |
+car_401_top.jpg    |
+car_401_side.jpg   |
+
+
+**Folder**
+
+Folder structure:
+
 ```text
 .
-└── project # project directory - name of created project
-    └── dataset_1 # dataset directory - name of the dataset
-        ├── car_id_105 # group directory - name of the group (tag value)
+└── cars catalog
+    └── used cars
+        ├── car_id_105
         │   ├── car_105_front.jpg
         │   └── car_105_top.jpg
-        ├── car_id_202 # group directory - name of the group (tag value)
+        ├── car_id_202
         │   ├── car_202_front.jpg
         │   └── car_202_top.jpg
-        ├── car_id_357 # group directory - name of the group (tag value)
+        ├── car_id_357
         │   ├── car_357_front.jpg
         │   └── car_357_top.jpg
-        ├── image_1.jpg }
-        ├── image_2.jpg } # images without groups will be uploaded as a regular images
-        └── image_3.jpg }
+        ├── car_401_front.jpg
+        ├── car_401_top.jpg
+        └── car_401_side.jpg
 ```
+
+Folder structure explained:
+
+1. Name of the project directory will be used for created supervisely project.
+2. Inside project directory must be dataset directory. Name of the dataset directory will be used for created dataset. 
+3. Group directories must be populated with images and placed inside dataset directory. All images inside groups will be tagged.
+4. All images in the root dataset directory will be uploaded as a regular images and will not be tagged.
+
+
+Example of created project using the example below and tag `car id` as user input:
+* Project name: cars catalog
+* Dataset name: used cars
+* Images:
+
+Image name  |  Tag
+:-------------------------:|:-----------------------------------:
+car_105_front.jpg  | `car id`: `105`
+car_105_top.jpg    | `car id`: `105`
+car_202_front.jpg  | `car id`: `202`
+car_202_top.jpg    | `car id`: `202`
+car_357_front.jpg  | `car id`: `357`
+car_357_top.jpg    | `car id`: `357`
+car_401_front.jpg  |
+car_401_top.jpg    |
+car_401_side.jpg   |
+
+
 [**Download example data**](https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.1/cars_catalog.zip)
 
 Prepare project and drag and drop it to `Team Files`.
