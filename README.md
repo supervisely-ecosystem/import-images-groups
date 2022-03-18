@@ -150,11 +150,19 @@ Prepare project and drag and drop it to `Team Files`.
 
 # How To Use
 **Step 1.** Open imported project.
-<img src="https://i.imgur.com/oAPlnmq.png"/>
+<img src="https://i.imgur.com/DAIOzN0.png"/>
 
 **Step 2.** Open dataset using new image annotator.
 <img src="https://i.imgur.com/sSCtInH.png"/>
 
-**Step 3.** To display single images switch off `Images Grouping` setting.
+# Additional Settings
+
+**1.** To display single images switch off `Images Grouping` setting.
 
 <img src="https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.2/enabled-disabled.gif"/>
+
+**2.** If you want to disable images groupping for the whole project, go to `Project`->`Settings`->`Visuals` uncheck
+<img src="https://i.imgur.com/qOGICD3.png"/>
+
+**3.** Windowing tool is available when working with `.nrrd` files. It helps to filter pixels to see bones, air, liquids and etc
+<img src="https://i.imgur.com/gW37Tyn.png"/>
