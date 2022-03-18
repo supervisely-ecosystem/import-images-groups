@@ -5,6 +5,7 @@
 
 <p align="center">
   <a href="#Overview">Overview</a> •
+  <a href="#Preparation">Preparation</a> •
   <a href="#How-To-Run">How To Run</a> •
   <a href="#How-To-Use">How To Use</a>
 </p>
@@ -22,17 +23,16 @@
 Import images groups and creates a new project in the current `Team` -> `Workspace`.
 
 Application key points:
-* All images in groups in the created project will be tagged with a group tag defined by user in the modal window
+* Tag for images is defined by user in the modal window when starting the app
+* All images in groups in the created project will be tagged
 * `Images Grouping` option will be turned on by default in the created project
 * Images will be grouped by tag's value
 * Tag value is defined by group directory name
 * Works with `.nrrd` image format (2D only)
 
+# Preparation
 
-[**Download example data**](https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.1/cars_catalog.zip)
-
-
-**Project structure have to be the following:**
+Project structure have to be the following:
 
 **Archive:**
 `zip`, `tar`, `gztar`, `bztar`, or `xztar` or any other registered unpacking format
@@ -73,6 +73,12 @@ Application key points:
         ├── image_2.jpg } # images without groups will be uploaded as a regular images
         └── image_3.jpg }
 ```
+
+Prepare project and drag and drop it to `Team Files`.
+
+<img src="https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.2/drag-n-drop.gif"/>
+
+[**Download example data**](https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.1/cars_catalog.zip)
 
 # How To Run 
 **Step 1.** Add [Import Images Groups](https://ecosystem.supervise.ly/apps/import-images-groups) app to your team from Ecosystem
