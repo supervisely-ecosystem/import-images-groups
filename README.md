@@ -83,7 +83,7 @@ Prepare project and drag and drop it to `Team Files`.
 **Step 1.** Add [Import Images Groups](https://ecosystem.supervise.ly/apps/import-images-groups) app to your team from Ecosystem
 <img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/import-images-groups" src="https://i.imgur.com/wAiE0ld.png" width="70%"/>
 
-**Step 2.** Run app from `Team` -> `Files` page.
+**Step 2.** Run app from the context menu of your data on Team Files page:
 <img src="https://i.imgur.com/Y0dTDzC.png"/>
 
 
