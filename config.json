@@ -14,6 +14,7 @@
   "icon_cover": false,
   "icon_background": "#FFFFFF",
   "headless": true,
+  "instance_version": "6.4.39",
   "context_menu": {
     "target": ["files_file", "files_folder"]
   }
