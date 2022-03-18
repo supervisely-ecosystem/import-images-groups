@@ -32,7 +32,7 @@ Application key points:
 
 # Preparation
 
-**Archive** `zip`, `tar`, `gztar`, `bztar`, or `xztar` or any other registered unpacking format
+**Archive** `zip`, `tar`, `tar.xz`, `tar.gz`
 
 Archive structure:
 
