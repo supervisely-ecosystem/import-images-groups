@@ -93,53 +93,62 @@ Example of created project using the example below and tag `car id` as user inpu
 
 Image name  |  Tag
 :-------------------------:|:-----------------------------------:
-car_105_front.jpg  | `car id`: `105`
-car_105_top.jpg    | `car id`: `105`
-car_202_front.jpg  | `car id`: `202`
-car_202_top.jpg    | `car id`: `202`
-car_357_front.jpg  | `car id`: `357`
-car_357_top.jpg    | `car id`: `357`
-car_401_front.jpg  |
-car_401_top.jpg    |
-car_401_side.jpg   |
+car\_105_front.jpg  | `car id`: `105`
+car\_105_top.jpg    | `car id`: `105`
+car\_202_front.jpg  | `car id`: `202`
+car\_202_top.jpg    | `car id`: `202`
+car\_357_front.jpg  | `car id`: `357`
+car\_357_top.jpg    | `car id`: `357`
+car\_401_front.jpg  |
+car\_401_top.jpg    |
+car\_401_side.jpg   |
 
 
 [**Download example data**](https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.1/cars_catalog.zip)
 
 Prepare project and drag and drop it to `Team Files`.
 
-<img src="https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.2/drag-n-drop.gif"/>
+<img src="https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.2/drag-n-drop.gif?raw=true"/>
 
 # How To Run 
 **Step 1.** Add [Import Images Groups](https://ecosystem.supervise.ly/apps/import-images-groups) app to your team from Ecosystem
+
 <img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/import-images-groups" src="https://i.imgur.com/wAiE0ld.png" width="70%"/>
+
 
 **Step 2.** Run app from the context menu of your data on Team Files page:
 <img src="https://i.imgur.com/Y0dTDzC.png"/>
 
 
 **Step 3.** Define group tag name in modal window.
+
 <img src="https://i.imgur.com/oMCsnvK.png" width="70%"/>
+
 
 **Step 4.** Once app is started, new task will appear in workspace tasks. Wait for the app to process your data.
 
 # How To Use
+
 **Step 1.** Open imported project.
+
 <img src="https://i.imgur.com/DAIOzN0.png"/>
 
 **Step 2.** Open dataset using new image annotator.
+
 <img src="https://i.imgur.com/sSCtInH.png"/>
 
 # Additional Settings
 
 **1.** To display single images switch off `Images Grouping` setting.
 
-<img src="https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.2/enabled-disabled.gif"/>
+<img src="https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.2/enabled-disabled.gif?raw=true"/>
 
 **2.** If you want to disable images groupping for the whole project, go to `Project`->`Settings`->`Visuals` uncheck
+
 <img src="https://i.imgur.com/qOGICD3.png"/>
 
 **3.** Windowing tool is available when working with `.nrrd` files. It helps to filter pixels to see bones, air, liquids and etc
+
 <img src="https://i.imgur.com/gW37Tyn.png"/>
 
 
