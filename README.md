@@ -31,6 +31,7 @@ Application key points:
 * Images will be grouped by tag's value
 * Tag value is defined by group directory name
 * Works with `.nrrd` image format (2D only)
+* Projects with `.nrrd` images format can be exported only with [Export to Supervisely format](https://ecosystem.supervise.ly/apps/export-to-supervisely-format) app
 
 # Preparation
 
