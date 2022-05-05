@@ -8,7 +8,9 @@
   "docker_image": "supervisely/base-py-sdk:6.8.3",
   "main_script": "src/main.py",
   "modal_template": "src/modal.html",
-  "modal_template_state": {"groupTagName": "group_name"},
+  "modal_template_state": {
+    "groupTagName": "group_name"
+  },
   "task_location": "workspace_tasks",
   "icon": "https://i.imgur.com/MxlNwDM.png",
   "icon_cover": false,
@@ -16,6 +18,10 @@
   "headless": true,
   "instance_version": "6.4.39",
   "context_menu": {
-    "target": ["files_file", "files_folder"]
-  }
+    "target": [
+      "files_file",
+      "files_folder"
+    ]
+  },
+  "poster": "https://i.imgur.com/HQW7m9F.png"
 }
