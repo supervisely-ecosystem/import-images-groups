@@ -123,7 +123,7 @@ Prepare project and drag and drop it to `Team Files`.
 
 **Step 3.** Define group tag name in modal window and enable/disable synchronized view for images group.
 
-<img src="https://i.imgur.com/oMCsnvK.png" width="70%"/>
+<img src="https://user-images.githubusercontent.com/48913536/172839236-dc831edf-f092-4d91-b183-685bddae2119.png" width="70%"/>
 
 
 **Step 4.** Once app is started, new task will appear in workspace tasks. Wait for the app to process your data.
