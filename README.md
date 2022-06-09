@@ -121,7 +121,7 @@ Prepare project and drag and drop it to `Team Files`.
 <img src="https://i.imgur.com/Y0dTDzC.png"/>
 
 
-**Step 3.** Define group tag name in modal window.
+**Step 3.** Define group tag name in modal window and enable/disable synchronized view for images group.
 
 <img src="https://i.imgur.com/oMCsnvK.png" width="70%"/>
 
@@ -152,6 +152,22 @@ Prepare project and drag and drop it to `Team Files`.
 
 <img src="https://i.imgur.com/gW37Tyn.png"/>
 
+**4.** Images view synchronization
+
+<div>
+  <table>
+    <tr style="width: 100%">
+      <td>
+        <b>Synchronization OFF</b>
+        <img src="https://user-images.githubusercontent.com/48913536/172838253-4817336b-814b-4504-86cc-870c6665a14b.png" style="width:100%;"/>
+      </td>
+      <td>
+        <b>Synchronization ON</b>
+        <img src="https://user-images.githubusercontent.com/48913536/172838244-45fa76cc-50e2-41e5-819a-81ceb3387ade.png" style="width:100%;"/>
+      </td>
+    </tr>
+  </table>
+</div>
 
 # Demo Video
 <a data-key="sly-embeded-video-link" href="https://www.youtube.com/watch?v=4JOjK2HlLXo" data-video-code="4JOjK2HlLXo">

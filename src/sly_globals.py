@@ -1,5 +1,5 @@
 import os
-
+from distutils.util import strtobool
 import supervisely as sly
 from supervisely.app.v1.app_service import AppService
 from supervisely.io.fs import mkdir
@@ -9,6 +9,7 @@ my_app: AppService = AppService()
 TEAM_ID: int = int(os.environ['context.teamId'])
 WORKSPACE_ID: int = int(os.environ['context.workspaceId'])
 GROUP_TAG_NAME: str = os.environ.get("modal.state.groupTagName")
+SYNC_IMAGES = bool(strtobool(os.getenv("modal.state.syncImages")))
 
 INPUT_DIR: str = os.environ.get("modal.state.slyFolder")
 INPUT_FILE: str = os.environ.get("modal.state.slyFile")

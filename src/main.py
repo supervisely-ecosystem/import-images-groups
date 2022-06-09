@@ -16,7 +16,7 @@ def import_images_groups(api: sly.Api, task_id: int, context: dict, state: dict,
     new_project = api.project.create(
         workspace_id=g.WORKSPACE_ID, name=project_name, change_name_if_conflict=True)
     api.project.update_meta(id=new_project.id, meta=g.project_meta.to_json())
-    api.project.images_grouping(id=new_project.id, enable=True, tag_name=group_name_tag_meta.name)
+    api.project.images_grouping(id=new_project.id, enable=True, tag_name=group_name_tag_meta.name, sync=g.SYNC_IMAGES)
 
     datasets_paths = [os.path.join(project_dir, item) for item in os.listdir(
         project_dir) if os.path.isdir(os.path.join(project_dir, item))]
