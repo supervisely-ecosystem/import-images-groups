@@ -91,20 +91,20 @@ Example of created project using the example below and tag `car id` as user inpu
 * Dataset name: used cars
 * Images:
 
-Image name  |  Tag
-:-------------------------:|:-----------------------------------:
-car\_105_front.jpg  | `car id`: `105`
-car\_105_top.jpg    | `car id`: `105`
-car\_202_front.jpg  | `car id`: `202`
-car\_202_top.jpg    | `car id`: `202`
-car\_357_front.jpg  | `car id`: `357`
-car\_357_top.jpg    | `car id`: `357`
-car\_401_front.jpg  |
-car\_401_top.jpg    |
-car\_401_side.jpg   |
+|     Image name     |       Tag       |
+| :----------------: | :-------------: |
+| car\_105_front.jpg | `car id`: `105` |
+|  car\_105_top.jpg  | `car id`: `105` |
+| car\_202_front.jpg | `car id`: `202` |
+|  car\_202_top.jpg  | `car id`: `202` |
+| car\_357_front.jpg | `car id`: `357` |
+|  car\_357_top.jpg  | `car id`: `357` |
+| car\_401_front.jpg |
+|  car\_401_top.jpg  |
+| car\_401_side.jpg  |
 
 
-[**Download example data**](https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.1/cars_catalog.zip)
+**Download example data:** [**IMAGES**](https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.1/cars.catalog.zip) **|** [**NRRD**](https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.1/research.zip)
 
 Prepare project and drag and drop it to `Team Files`.
 

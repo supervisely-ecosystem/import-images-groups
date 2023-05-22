@@ -1,12 +1,9 @@
 {
   "name": "Import images groups",
   "type": "app",
-  "categories": [
-    "import",
-    "images"
-  ],
+  "categories": ["import", "images"],
   "description": "Import images groups connected via user defined tag",
-  "docker_image": "supervisely/base-py-sdk:6.35.0",
+  "docker_image": "supervisely/base-py-sdk:6.72.12",
   "main_script": "src/main.py",
   "modal_template": "src/modal.html",
   "modal_template_state": {
@@ -20,10 +17,7 @@
   "headless": true,
   "instance_version": "6.4.56",
   "context_menu": {
-    "target": [
-      "files_file",
-      "files_folder"
-    ]
+    "target": ["files_file", "files_folder"]
   },
   "poster": "https://i.imgur.com/HQW7m9F.png"
 }
