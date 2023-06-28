@@ -1,5 +1,5 @@
 <div align="center" markdown>
-<img src="https://i.imgur.com/HQW7m9F.png"/>
+<img src="media/poster.png"/>
 
 # Import Images Groups
 
@@ -113,16 +113,16 @@ Prepare project and drag and drop it to `Team Files`.
 # How To Run 
 **Step 1.** Add [Import Images Groups](https://ecosystem.supervise.ly/apps/import-images-groups) app to your team from Ecosystem
 
-<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/import-images-groups" src="https://i.imgur.com/wAiE0ld.png" width="70%"/>
+<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/import-images-groups" src="media/htr1.png" width="70%"/>
 
 
 **Step 2.** Run app from the context menu of your data on Team Files page:
-<img src="https://i.imgur.com/Y0dTDzC.png"/>
+<img src="media/htr2.png"/>
 
 
 **Step 3.** Define group tag name in modal window and enable/disable synchronized view for images group.
 
-<img src="https://user-images.githubusercontent.com/48913536/172839236-dc831edf-f092-4d91-b183-685bddae2119.png" width="70%"/>
+<img src="media/htr2.png" width="70%"/>
 
 
 **Step 4.** Once app is started, new task will appear in workspace tasks. Wait for the app to process your data.
@@ -131,11 +131,11 @@ Prepare project and drag and drop it to `Team Files`.
 
 **Step 1.** Open imported project.
 
-<img src="https://i.imgur.com/DAIOzN0.png"/>
+<img src="media/htu1.png"/>
 
 **Step 2.** Open dataset using new image annotator.
 
-<img src="https://i.imgur.com/sSCtInH.png"/>
+<img src="media/htu2.png"/>
 
 # Additional Settings
 
@@ -145,11 +145,11 @@ Prepare project and drag and drop it to `Team Files`.
 
 **2.** If you want to disable images groupping for the whole project, go to `Project`->`Settings`->`Visuals` uncheck
 
-<img src="https://i.imgur.com/qOGICD3.png"/>
+<img src="media/as2.png"/>
 
 **3.** Windowing tool is available when working with `.nrrd` files. It helps to filter pixels to see bones, air, liquids and etc
 
-<img src="https://i.imgur.com/gW37Tyn.png"/>
+<img src="media/as3.png"/>
 
 **4.** Images view synchronization
 
@@ -170,5 +170,5 @@ Prepare project and drag and drop it to `Team Files`.
 
 # Demo Video
 <a data-key="sly-embeded-video-link" href="https://www.youtube.com/watch?v=4JOjK2HlLXo" data-video-code="4JOjK2HlLXo">
-    <img src="https://i.imgur.com/mb4CPK1.png" alt="SLY_EMBEDED_VIDEO_LINK"  width="70%">
+    <img src="media/dv.png" alt="SLY_EMBEDED_VIDEO_LINK"  width="70%">
 </a>
