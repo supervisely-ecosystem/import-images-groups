@@ -11,7 +11,7 @@
     "syncImages": false
   },
   "task_location": "workspace_tasks",
-  "icon": "https://i.imgur.com/MxlNwDM.png",
+  "icon": "media/icon.png",
   "icon_cover": false,
   "icon_background": "#FFFFFF",
   "headless": true,
@@ -19,5 +19,5 @@
   "context_menu": {
     "target": ["files_file", "files_folder"]
   },
-  "poster": "https://i.imgur.com/HQW7m9F.png"
+  "poster": "media/poster.png"
 }
