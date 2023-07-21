@@ -98,7 +98,7 @@ def process_images_groups(dataset_path: str, group_name_tag_meta: sly.TagMeta, s
 
     for image_group_path in images_groups_paths:
         images_paths = [os.path.join(image_group_path, item) for item in os.listdir(
-            image_group_path) if file_exists(os.path.join(image_group_path, item))]
+            image_group_path) if file_exists(os.path.join(image_group_path, item)) and item != ".DS_Store"]
         group_name = os.path.basename(os.path.normpath(image_group_path))
         group_tag = sly.Tag(meta=group_name_tag_meta, value=group_name)
         for image_path in images_paths:
@@ -118,7 +118,7 @@ def process_single_images(dataset_path: str) -> Tuple[List[str], List[str], List
     """Forms lists with images paths, names and anns for non group images."""
     single_images_paths, single_images_names, single_images_anns = [], [], []
     images_paths = [os.path.join(dataset_path, item) for item in os.listdir(dataset_path) if
-                    file_exists(os.path.join(dataset_path, item))]
+                    file_exists(os.path.join(dataset_path, item)) and item != ".DS_Store"]
 
     for image_path in images_paths:
         ann = sly.Annotation.from_img_path(image_path)
