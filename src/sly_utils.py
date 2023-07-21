@@ -64,10 +64,8 @@ def check_save_path(save_path: str) -> None:
     MAX_DEPTH = 3
     depth = len(save_path.split(os.sep))
     max_project_depth = max([len(path.split(os.sep)) for path, _, _ in os.walk(save_path)])
-    if max_project_depth - depth > MAX_DEPTH:
-        sly.logger.warn("Project depth is too big. Please, check your project structure.")
-    elif max_project_depth - depth < MAX_DEPTH:
-        sly.logger.warn("Project depth is too small. Please, check your project structure.")
+    if max_project_depth - depth != MAX_DEPTH:
+        sly.logger.warn("Please, check your project structure.")
 
 
 def download_data_from_team_files(api: sly.Api, task_id, save_path: str) -> str:
