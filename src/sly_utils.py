@@ -57,8 +57,8 @@ def check_save_path(save_path: str) -> None:
         groups = [group for group in os.listdir(dataset_path) if os.path.isdir(os.path.join(dataset_path, group))]
         single_images = [image for image in os.listdir(dataset_path) if os.path.isfile(os.path.join(dataset_path, image))]
         sly.logger.info(f"{dataset} dataset:")
-        sly.logger.info(f"├── {len(groups)} groups found in {dataset} dataset.")
-        sly.logger.info(f"└── {len(single_images)} single images found in {dataset} dataset.")
+        sly.logger.info(f"├{len(groups)} groups found in {dataset} dataset.")
+        sly.logger.info(f"└{len(single_images)} single images found in {dataset} dataset.")
 
     # checks if save path depth is correct.
     MAX_DEPTH = 3
