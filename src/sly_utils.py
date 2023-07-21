@@ -42,9 +42,22 @@ def check_save_path_depth(save_path: str) -> None:
     """Checks if save path depth is correct."""
     MAX_DEPTH = 3
     depth = len(save_path.split(os.sep))
+
+    project_path = os.path.join(save_path, os.listdir(save_path)[0])
+    sly.logger.info(f"Project path: {project_path}")
+    sly.logger.info(f"{len(os.listdir(project_path))} datasets found in project.")
+    for dataset in os.listdir(project_path):
+        dataset_path = os.path.join(project_path, dataset)
+        groups = [group for group in os.listdir(dataset_path) if os.path.isdir(os.path.join(dataset_path, group))]
+        single_images = [image for image in os.listdir(dataset_path) if os.path.isfile(os.path.join(dataset_path, image))]
+        sly.logger.info(f"{len(groups)} groups found in {dataset} dataset.")
+        sly.logger.info(f"{len(single_images)} single images found in {dataset} dataset.")
+
     max_project_depth = max([len(path.split(os.sep)) for path, _, _ in os.walk(save_path)])
-    if max_project_depth - depth != MAX_DEPTH:
-        sly.logger.warn("Grouped images not found. Please check your project structure.")
+    if max_project_depth - depth > MAX_DEPTH:
+        sly.logger.warn("Project depth is too big. Please, check your project structure.")
+    elif max_project_depth - depth < MAX_DEPTH:
+        sly.logger.warn("Project depth is too small. Please, check your project structure.")
 
 
 def download_data_from_team_files(api: sly.Api, task_id, save_path: str) -> str:
