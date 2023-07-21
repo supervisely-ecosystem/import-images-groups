@@ -72,6 +72,10 @@ def download_data_from_team_files(api: sly.Api, task_id, save_path: str) -> str:
                           progress_cb=progress_cb)
         shutil.unpack_archive(save_archive_path, save_path)
         silent_remove(save_archive_path)
+        if "__MACOSX" in os.listdir(save_path):
+            shutil.rmtree(os.path.join(save_path, "__MACOSX"))
+        if ".DS_Store" in os.listdir(save_path):
+            silent_remove(os.path.join(save_path, ".DS_Store"))
         if len(os.listdir(save_path)) > 1:
             g.my_app.logger.error("There must be only 1 project directory in the archive")
             raise Exception("There must be only 1 project directory in the archive")
