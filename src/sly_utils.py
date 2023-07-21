@@ -38,6 +38,36 @@ def get_free_name(group_name: str, image_name: str) -> str:
     return res_name
 
 
+def check_save_path(save_path: str) -> None:
+    # remove macosx folder and .DS_Store files
+    if "__MACOSX" in os.listdir(save_path):
+        shutil.rmtree(os.path.join(save_path, "__MACOSX"))
+    for path, dir, files in os.walk(save_path):
+        if ".DS_Store" in files:
+            silent_remove(os.path.join(path, ".DS_Store"))
+
+    # log project structure
+    project_path = os.path.join(save_path, os.listdir(save_path)[0])
+    sly.logger.info(f"Project path: {project_path}")
+    sly.logger.info(f"{len(os.listdir(project_path))} datasets found in project.")
+    for dataset in os.listdir(project_path):
+        if not os.path.isdir(os.path.join(project_path, dataset)):
+            continue
+        dataset_path = os.path.join(project_path, dataset)
+        groups = [group for group in os.listdir(dataset_path) if os.path.isdir(os.path.join(dataset_path, group))]
+        single_images = [image for image in os.listdir(dataset_path) if os.path.isfile(os.path.join(dataset_path, image))]
+        sly.logger.info(f"{dataset} dataset:")
+        sly.logger.info(f"- {len(groups)} groups found in {dataset} dataset.")
+        sly.logger.info(f"- {len(single_images)} single images found in {dataset} dataset.")
+
+    # checks if save path depth is correct.
+    MAX_DEPTH = 3
+    depth = len(save_path.split(os.sep))
+    max_project_depth = max([len(path.split(os.sep)) for path, _, _ in os.walk(save_path)])
+    if max_project_depth - depth != MAX_DEPTH:
+        sly.logger.warn("Please, check your project structure.")
+
+
 def download_data_from_team_files(api: sly.Api, task_id, save_path: str) -> str:
     """Download data from remote directory in Team Files."""
     project_path = None
@@ -55,6 +85,7 @@ def download_data_from_team_files(api: sly.Api, task_id, save_path: str) -> str:
                                     remote_path=remote_path,
                                     local_save_path=project_path,
                                     progress_cb=progress_cb)
+        check_save_path(save_path)
 
     elif g.INPUT_FILE is not None:
         remote_path = g.INPUT_FILE
@@ -72,6 +103,7 @@ def download_data_from_team_files(api: sly.Api, task_id, save_path: str) -> str:
                           progress_cb=progress_cb)
         shutil.unpack_archive(save_archive_path, save_path)
         silent_remove(save_archive_path)
+        check_save_path(save_path)
         if len(os.listdir(save_path)) > 1:
             g.my_app.logger.error("There must be only 1 project directory in the archive")
             raise Exception("There must be only 1 project directory in the archive")
