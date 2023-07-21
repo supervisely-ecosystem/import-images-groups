@@ -38,11 +38,15 @@ def get_free_name(group_name: str, image_name: str) -> str:
     return res_name
 
 
-def check_save_path_depth(save_path: str) -> None:
-    """Checks if save path depth is correct."""
-    MAX_DEPTH = 3
-    depth = len(save_path.split(os.sep))
+def check_save_path(save_path: str) -> None:
+    # remove macosx folder and .DS_Store files
+    if "__MACOSX" in os.listdir(save_path):
+        shutil.rmtree(os.path.join(save_path, "__MACOSX"))
+    for path, dir, files in os.walk(save_path):
+        if ".DS_Store" in files:
+            silent_remove(os.path.join(path, ".DS_Store"))
 
+    # log project structure
     project_path = os.path.join(save_path, os.listdir(save_path)[0])
     sly.logger.info(f"Project path: {project_path}")
     sly.logger.info(f"{len(os.listdir(project_path))} datasets found in project.")
@@ -53,6 +57,9 @@ def check_save_path_depth(save_path: str) -> None:
         sly.logger.info(f"{len(groups)} groups found in {dataset} dataset.")
         sly.logger.info(f"{len(single_images)} single images found in {dataset} dataset.")
 
+    # checks if save path depth is correct.
+    MAX_DEPTH = 3
+    depth = len(save_path.split(os.sep))
     max_project_depth = max([len(path.split(os.sep)) for path, _, _ in os.walk(save_path)])
     if max_project_depth - depth > MAX_DEPTH:
         sly.logger.warn("Project depth is too big. Please, check your project structure.")
@@ -77,7 +84,7 @@ def download_data_from_team_files(api: sly.Api, task_id, save_path: str) -> str:
                                     remote_path=remote_path,
                                     local_save_path=project_path,
                                     progress_cb=progress_cb)
-        check_save_path_depth(save_path)
+        check_save_path(save_path)
 
     elif g.INPUT_FILE is not None:
         remote_path = g.INPUT_FILE
@@ -95,11 +102,7 @@ def download_data_from_team_files(api: sly.Api, task_id, save_path: str) -> str:
                           progress_cb=progress_cb)
         shutil.unpack_archive(save_archive_path, save_path)
         silent_remove(save_archive_path)
-        if "__MACOSX" in os.listdir(save_path):
-            shutil.rmtree(os.path.join(save_path, "__MACOSX"))
-        if ".DS_Store" in os.listdir(save_path):
-            silent_remove(os.path.join(save_path, ".DS_Store"))
-        check_save_path_depth(save_path)
+        check_save_path(save_path)
         if len(os.listdir(save_path)) > 1:
             g.my_app.logger.error("There must be only 1 project directory in the archive")
             raise Exception("There must be only 1 project directory in the archive")
@@ -126,7 +129,7 @@ def process_images_groups(dataset_path: str, group_name_tag_meta: sly.TagMeta, s
 
     for image_group_path in images_groups_paths:
         images_paths = [os.path.join(image_group_path, item) for item in os.listdir(
-            image_group_path) if file_exists(os.path.join(image_group_path, item)) and item != ".DS_Store"]
+            image_group_path) if file_exists(os.path.join(image_group_path, item))]
         group_name = os.path.basename(os.path.normpath(image_group_path))
         group_tag = sly.Tag(meta=group_name_tag_meta, value=group_name)
         for image_path in images_paths:
@@ -146,7 +149,7 @@ def process_single_images(dataset_path: str) -> Tuple[List[str], List[str], List
     """Forms lists with images paths, names and anns for non group images."""
     single_images_paths, single_images_names, single_images_anns = [], [], []
     images_paths = [os.path.join(dataset_path, item) for item in os.listdir(dataset_path) if
-                    file_exists(os.path.join(dataset_path, item)) and item != ".DS_Store"]
+                    file_exists(os.path.join(dataset_path, item))]
 
     for image_path in images_paths:
         ann = sly.Annotation.from_img_path(image_path)
