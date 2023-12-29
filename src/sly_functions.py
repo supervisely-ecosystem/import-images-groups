@@ -8,13 +8,11 @@ from supervisely.io.fs import get_file_ext, get_file_name
 import sly_globals as g
 
 
-def get_free_name(existing_names: str, image_name: str, is_grouped: bool, group_name: str) -> str:
+def get_free_name(existing_names: List[str], image_name: str) -> str:
     """Generates new name for duplicated image name."""
     original_name = image_name
     image_name, image_ext = get_file_name(image_name), get_file_ext(image_name)
     i = 1
-    if is_grouped and group_name is not None:
-        image_name = f"{image_name}_{group_name}"
     res_name = f"{image_name}_{i}{image_ext}"
     while res_name in existing_names:
         i += 1
@@ -23,36 +21,20 @@ def get_free_name(existing_names: str, image_name: str, is_grouped: bool, group_
     return res_name
 
 
-def check_image_names(
-    existing_names: List[str],
-    image_names: List[str],
-    is_grouped: bool = False,
-    group_name: str = None,
-) -> List[str]:
+def check_image_names(existing_names: List[str], image_names: List[str]) -> List[str]:
     """Checks if image names are unique and renames them if needed."""
     new_names = []
     for image_name in image_names:
         if image_name in existing_names:
-            image_name = get_free_name(existing_names, image_name, is_grouped, group_name)
+            image_name = get_free_name(existing_names, image_name)
         existing_names.append(image_name)
         new_names.append(image_name)
     return new_names
 
 
-def check_save_path(save_path: str) -> None:
-    sly.fs.remove_junk_from_dir(save_path)
-    if len(os.listdir(save_path)) > 1:
-        raise Exception("There must be only 1 project directory in the archive")
-
-    # checks if save path depth is correct.
-    MAX_DEPTH = 3
-    depth = len(save_path.split(os.sep))
-    max_project_depth = max([len(path.split(os.sep)) for path, _, _ in os.walk(save_path)])
-    if max_project_depth - depth != MAX_DEPTH:
-        raise Exception("Project structure is incorrect. Max project structure depth should be 3.")
-
-    # log project structure
-    project_path = join(save_path, os.listdir(save_path)[0])
+def log_project_structure(path: str) -> None:
+    """Logs project structure."""
+    project_path = join(path, os.listdir(path)[0])
     sly.logger.info(f"Project path: {project_path}")
     datasets_paths = [join(project_path, i) for i in os.scandir(project_path) if i.is_dir()]
     sly.logger.info(f"{len(datasets_paths)} datasets found in project.")
@@ -64,10 +46,38 @@ def check_save_path(save_path: str) -> None:
         sly.logger.info(f"- {len(single_images)} single images found in the dataset.")
 
 
+def check_save_path(save_path: str) -> None:
+    sly.fs.remove_junk_from_dir(save_path)
+    if len(os.listdir(save_path)) > 1:
+        raise Exception("There must be only 1 project directory in the archive")
+
+    listdir = os.listdir(save_path)
+    subdir = join(save_path, listdir[0])
+    if len(os.listdir(subdir)) == 1 and sly.fs.is_archive(join(subdir, os.listdir(subdir)[0])):
+        archive_path = join(subdir, os.listdir(subdir)[0])
+        sly.fs.unpack_archive(archive_path, subdir)
+        sly.fs.silent_remove(archive_path)
+
+    # checks if save path depth is correct.
+    MAX_DEPTH = 3
+    depth = len(save_path.split(os.sep))
+    max_project_depth = max([len(path.split(os.sep)) for path, _, _ in os.walk(save_path)])
+    if max_project_depth - depth != MAX_DEPTH:
+        if max_project_depth - depth == 4 and len(listdir) == 1 and os.path.isdir(subdir):
+            save_path = subdir
+        else:
+            raise Exception(
+                "Project structure is incorrect. Max project structure depth should be 3."
+            )
+
+    log_project_structure(save_path)
+    return save_path
+
+
 def download_data_from_team_files(api: sly.Api, save_path: str) -> str:
     """Download data from remote directory in Team Files."""
     api.file.download_input(save_path, log_progress=True)
-    check_save_path(save_path)
+    save_path = check_save_path(save_path)
     project_name = os.listdir(save_path)[0]
     project_path = join(save_path, project_name)
     return project_path
@@ -105,7 +115,7 @@ def upload_grouped_images(api, group_dir, dataset_id, existing_names, progress):
             group_name = f"{base_group_name}_{group_idx}"
             group_idx += 1
         names = [sly.fs.get_file_name_with_ext(path) for path in batch]
-        names = check_image_names(existing_names, names, True, group_name)
+        names = check_image_names(existing_names, names)
         image_infos = api.image.upload_paths(dataset_id, names, batch)
         image_ids = [img_info.id for img_info in image_infos]
         api.image.add_tag_batch(image_ids, group_name_tag_meta.sly_id, group_name)
