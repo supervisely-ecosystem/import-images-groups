@@ -9,8 +9,8 @@
   "modal_template_state": {
     "defaultSettings": true,
     "groupTagName": "multiview",
-    "syncImages": true,
-    "syncImagesBackup": true
+    "syncImages": false,
+    "syncImagesBackup": false
   },
   "task_location": "workspace_tasks",
   "icon": "https://i.imgur.com/MxlNwDM.png",
