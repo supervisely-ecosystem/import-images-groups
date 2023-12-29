@@ -52,8 +52,6 @@ def import_images_groups(api: sly.Api) -> None:
             sly.logger.warn(f"{len(single_imgs)} images in {ds_name} weren't attached to any group")
             ds_progress.iter_done_report()
 
-    g.my_app.stop()
-
 
 @sly.handle_exceptions(has_ui=False)
 def main():
