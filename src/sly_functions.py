@@ -92,7 +92,7 @@ def upload_single_images(api, images, dataset_id, existing_names, progress):
 
 def upload_grouped_images(api, group_dir, dataset_id, existing_names, progress):
     """Uploads grouped images to dataset."""
-    group_name_tag_meta = g.project_meta.get_tag_meta(g.DEFAULT_GROUP_NAME)
+    group_name_tag_meta = g.project_meta.get_tag_meta(g.GROUP_TAG_NAME)
     img_paths = sly.fs.list_files(group_dir, valid_extensions=sly.image.SUPPORTED_IMG_EXTS)
     base_group_name = basename(normpath(group_dir))
     group_name = base_group_name
