@@ -5,3 +5,4 @@ venv
 debug
 src/debug
 src/__pycache__
+temp
