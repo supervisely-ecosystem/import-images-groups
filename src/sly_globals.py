@@ -1,27 +1,35 @@
 import os
 from distutils.util import strtobool
-
 import supervisely as sly
 from dotenv import load_dotenv
-from supervisely.app.v1.app_service import AppService
-from supervisely.io.fs import mkdir
 
 if sly.is_development():
     load_dotenv("local.env")
     load_dotenv(os.path.expanduser("~/supervisely.env"))
 
-my_app: AppService = AppService()
+api = sly.Api.from_env()
 
-TEAM_ID: int = int(os.environ["context.teamId"])
-WORKSPACE_ID: int = int(os.environ["context.workspaceId"])
-GROUP_TAG_NAME: str = os.environ.get("modal.state.groupTagName")
+WORKSPACE_ID = sly.env.workspace_id()
+
+ABSOLUTE_PATH = os.path.dirname(os.path.abspath(__file__))
+PARENT_DIR = os.path.dirname(ABSOLUTE_PATH)
+sly.logger.debug(f"Absolute path: {ABSOLUTE_PATH}, parent dir: {PARENT_DIR}")
+
+TEMP_DIR = os.path.join(PARENT_DIR, "temp")
+sly.fs.mkdir(TEMP_DIR, remove_content_if_exists=True)
+sly.logger.debug(f"App starting... TEMP dir: {TEMP_DIR}")
+
+IS_DEFAULT_SETTINGS = bool(strtobool(os.getenv("modal.state.defaultSettings")))
+DEFAULT_GROUP_NAME = "multiview"
+GROUP_TAG_NAME = os.environ.get("modal.state.groupTagName", "")
 SYNC_IMAGES = bool(strtobool(os.getenv("modal.state.syncImages")))
 
-INPUT_DIR: str = os.environ.get("modal.state.slyFolder")
-INPUT_FILE: str = os.environ.get("modal.state.slyFile")
+if IS_DEFAULT_SETTINGS:
+    GROUP_TAG_NAME = DEFAULT_GROUP_NAME
+    SYNC_IMAGES = False
 
-PROJECT_NAME: str = "group-images"
-STORAGE_DIR: str = my_app.data_dir
-mkdir(STORAGE_DIR, True)
+elif GROUP_TAG_NAME == "":
+    sly.logger.warn("Group tag name is empty. Will be used default tag name: multiview")
+    GROUP_TAG_NAME = DEFAULT_GROUP_NAME
 
-project_meta: sly.ProjectMeta = None
+sly.logger.info(f"Multiview settings: group tag name: {GROUP_TAG_NAME}, sync images: {SYNC_IMAGES}")

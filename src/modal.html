@@ -1,9 +1,35 @@
 <div>
-    <sly-field title="Create group tag"
-               description="Creates tag with the following name and attach it to grouped images.">
-        <el-input v-model="state.groupTagName" placeholder="Please input name for group tag"></el-input>
-    </sly-field>
-    <div class="mt10">
-        <el-checkbox v-model="state.syncImages">Synchronized views</el-checkbox>
+  <div class="mt10 mb10">
+    <el-checkbox
+      v-model="state.defaultSettings"
+      @change="e => e.target.checked ? state.syncImages = false : state.syncImages = state.syncImagesBackup"
+      >Use default settings</el-checkbox
+    >
+  </div>
+  <sly-card title="Multiview settings">
+    <div>
+      <sly-field
+        description="Group tag name (will create tag with the following name and attach it to grouped images)"
+      >
+        <el-input
+          v-if="!state.defaultSettings"
+          v-model="state.groupTagName"
+          placeholder="Please input name for group tag"
+        ></el-input>
+        <el-input
+          v-if="state.defaultSettings"
+          value="multivew"
+          disabled="true"
+        ></el-input>
+      </sly-field>
+      <div class="mt10 mb10">
+        <el-checkbox
+          v-model="state.syncImages"
+          @change="e => e.target.checked ? state.syncImagesBackup = true : state.syncImagesBackup = false"
+          :disabled="state.defaultSettings"
+          >Synchronized views</el-checkbox
+        >
+      </div>
     </div>
+  </sly-card>
 </div>
