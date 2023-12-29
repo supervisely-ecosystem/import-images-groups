@@ -5,6 +5,8 @@ from typing import List, Tuple
 import supervisely as sly
 from supervisely.io.fs import get_file_ext, get_file_name
 
+import sly_globals as g
+
 
 def get_free_name(existing_names: str, image_name: str, is_grouped: bool, group_name: str) -> str:
     """Generates new name for duplicated image name."""
@@ -76,3 +78,35 @@ def create_project_meta_with_group_tag(group_tag_name: str) -> Tuple[sly.Project
     group_tag_meta = sly.TagMeta(group_tag_name, sly.TagValueType.ANY_STRING)
     project_meta = sly.ProjectMeta().add_tag_meta(group_tag_meta)
     return project_meta, group_tag_meta
+
+
+def upload_single_images(api, images, dataset_id, existing_names, progress):
+    """Uploads single images to dataset."""
+    for batch in sly.batched(images, batch_size=50):
+        names = [sly.fs.get_file_name_with_ext(path) for path in batch]
+        names = check_image_names(existing_names, names)
+        image_infos = api.image.upload_paths(dataset_id, names, batch)
+        sly.logger.warn(f"{len(image_infos)} single images will be hidden in the grouped view")
+        progress.iters_done_report(len(batch))
+
+
+def upload_grouped_images(api, group_dir, dataset_id, existing_names, progress):
+    """Uploads grouped images to dataset."""
+    group_name_tag_meta = g.project_meta.get_tag_meta(g.DEFAULT_GROUP_NAME)
+    img_paths = sly.fs.list_files(group_dir, valid_extensions=sly.image.SUPPORTED_IMG_EXTS)
+    base_group_name = basename(normpath(group_dir))
+    group_name = base_group_name
+    batch_size, group_idx = 20, 1
+    if len(img_paths) > batch_size:
+        sly.logger.warn("Maximum number of images in a group is 20.")
+        sly.logger.info(f"Group {group_name} will be split into several groups.")
+    for batch in sly.batched(img_paths, batch_size=batch_size):
+        if len(img_paths) > batch_size:
+            group_name = f"{base_group_name}_{group_idx}"
+            group_idx += 1
+        names = [sly.fs.get_file_name_with_ext(path) for path in batch]
+        names = check_image_names(existing_names, names, True, group_name)
+        image_infos = api.image.upload_paths(dataset_id, names, batch)
+        image_ids = [img_info.id for img_info in image_infos]
+        api.image.add_tag_batch(image_ids, group_name_tag_meta.sly_id, group_name)
+        progress.iters_done_report(len(batch))

@@ -23,3 +23,13 @@ IS_DEFAULT_SETTINGS = bool(strtobool(os.getenv("modal.state.defaultSettings")))
 DEFAULT_GROUP_NAME = "multiview"
 GROUP_TAG_NAME = os.environ.get("modal.state.groupTagName", "")
 SYNC_IMAGES = bool(strtobool(os.getenv("modal.state.syncImages")))
+
+if IS_DEFAULT_SETTINGS:
+    GROUP_TAG_NAME = DEFAULT_GROUP_NAME
+    SYNC_IMAGES = False
+
+elif GROUP_TAG_NAME == "":
+    sly.logger.warn("Group tag name is empty. Will be used default tag name: multiview")
+    GROUP_TAG_NAME = DEFAULT_GROUP_NAME
+
+sly.logger.info(f"Multiview settings: group tag name: {GROUP_TAG_NAME}, sync images: {SYNC_IMAGES}")
