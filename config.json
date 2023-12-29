@@ -1,29 +1,25 @@
 {
-    "name": "Import images groups",
-    "type": "app",
-    "categories": [
-        "import",
-        "images"
-    ],
-    "description": "Import images groups connected via user defined tag",
-    "docker_image": "supervisely/import-export:6.72.224",
-    "main_script": "src/main.py",
-    "modal_template": "src/modal.html",
-    "modal_template_state": {
-        "groupTagName": "group_name",
-        "syncImages": false
-    },
-    "task_location": "workspace_tasks",
-    "icon": "https://i.imgur.com/MxlNwDM.png",
-    "icon_cover": false,
-    "icon_background": "#FFFFFF",
-    "headless": true,
-    "min_instance_version": "6.8.61",
-    "context_menu": {
-        "target": [
-            "files_file",
-            "files_folder"
-        ]
-    },
-    "poster": "https://i.imgur.com/HQW7m9F.png"
+  "name": "Import images groups",
+  "type": "app",
+  "categories": ["import", "images"],
+  "description": "Import images groups connected via user defined tag",
+  "docker_image": "supervisely/import-export:6.72.224",
+  "main_script": "src/main.py",
+  "modal_template": "src/modal.html",
+  "modal_template_state": {
+    "defaultSettings": true,
+    "groupTagName": "multiview",
+    "syncImages": true,
+    "syncImagesBackup": true
+  },
+  "task_location": "workspace_tasks",
+  "icon": "https://i.imgur.com/MxlNwDM.png",
+  "icon_cover": false,
+  "icon_background": "#FFFFFF",
+  "headless": true,
+  "min_instance_version": "6.8.61",
+  "context_menu": {
+    "target": ["files_file", "files_folder"]
+  },
+  "poster": "https://i.imgur.com/HQW7m9F.png"
 }
