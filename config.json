@@ -6,7 +6,7 @@
     "images"
   ],
   "description": "Import images groups connected via user defined tag",
-  "docker_image": "supervisely/import-export:6.73.93",
+  "docker_image": "supervisely/import-export:6.73.160",
   "main_script": "src/main.py",
   "modal_template": "src/modal.html",
   "modal_template_state": {
@@ -20,7 +20,7 @@
   "icon_cover": false,
   "icon_background": "#FFFFFF",
   "headless": true,
-  "min_instance_version": "6.9.22",
+  "min_instance_version": "6.11.8",
   "context_menu": {
     "target": [
       "files_folder",
