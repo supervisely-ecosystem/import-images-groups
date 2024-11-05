@@ -12,11 +12,11 @@
   <a href="#Demo-Video">Demo Video</a>
 </p>
   
-[![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](https://ecosystem.supervise.ly/apps/supervisely-ecosystem/import-images-groups)
-[![](https://img.shields.io/badge/slack-chat-green.svg?logo=slack)](https://supervise.ly/slack)
+[![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](https://ecosystem.supervisely.com/apps/supervisely-ecosystem/import-images-groups)
+[![](https://img.shields.io/badge/slack-chat-green.svg?logo=slack)](https://supervisely.com/slack)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/supervisely-ecosystem/import-images-groups)
-[![views](https://app.supervise.ly/img/badges/views/supervisely-ecosystem/import-images-groups.png)](https://supervise.ly)
-[![runs](https://app.supervise.ly/img/badges/runs/supervisely-ecosystem/import-images-groups.png)](https://supervise.ly)
+[![views](https://app.supervisely.com/img/badges/views/supervisely-ecosystem/import-images-groups.png)](https://supervisely.com)
+[![runs](https://app.supervisely.com/img/badges/runs/supervisely-ecosystem/import-images-groups.png)](https://supervisely.com)
 
 </div>
 
@@ -30,7 +30,7 @@ Application key points:
 * Images will be grouped by tag's value
 * Tag value is defined by group directory name
 * Works with `.nrrd` image format (2D only)
-* Projects with `.nrrd` images format can be exported only with [Export to Supervisely format](https://ecosystem.supervise.ly/apps/export-to-supervisely-format) app
+* Projects with `.nrrd` images format can be exported only with [Export to Supervisely format](https://ecosystem.supervisely.com/apps/export-to-supervisely-format) app
 
 # Preparation
 
@@ -111,7 +111,7 @@ Prepare project and drag and drop it to `Team Files`.
 <img src="https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.2/drag-n-drop.gif?raw=true"/>
 
 # How To Run 
-**Step 1.** Add [Import Images Groups](https://ecosystem.supervise.ly/apps/import-images-groups) app to your team from Ecosystem
+**Step 1.** Add [Import Images Groups](https://ecosystem.supervisely.com/apps/import-images-groups) app to your team from Ecosystem
 
 <img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/import-images-groups" src="https://i.imgur.com/wAiE0ld.png" width="70%"/>
 
