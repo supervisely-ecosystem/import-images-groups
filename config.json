@@ -1,11 +1,11 @@
 {
-  "name": "Import images groups",
+  "name": "Import Multi-View Image Groups",
   "type": "app",
   "categories": [
     "import",
     "images"
   ],
-  "description": "Import images groups connected via user defined tag",
+  "description": "Import multi-view image groups connected via user defined tag",
   "docker_image": "supervisely/import-export:6.73.162",
   "main_script": "src/main.py",
   "modal_template": "src/modal.html",
@@ -27,5 +27,5 @@
       "files_file"
     ]
   },
-  "poster": "https://i.imgur.com/HQW7m9F.png"
+  "poster": "https://github.com/user-attachments/assets/cefddf42-82b0-44b8-843c-820c6196f6cf"
 }

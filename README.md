@@ -1,7 +1,7 @@
 <div align="center" markdown>
-<img src="https://i.imgur.com/HQW7m9F.png"/>
+<img src="https://github.com/user-attachments/assets/cefddf42-82b0-44b8-843c-820c6196f6cf"/>
 
-# Import Images Groups
+# Import Multi-View Image Groups
 
 <p align="center">
   <a href="#Overview">Overview</a> •
@@ -21,7 +21,7 @@
 </div>
 
 # Overview
-Import images groups and creates a new project in the current `Team` -> `Workspace`.
+Import multi-view image groups and create a new project in the current `Team` -> `Workspace`.
 
 Application key points:
 * Tag for images is defined by user in the modal window when starting the app
