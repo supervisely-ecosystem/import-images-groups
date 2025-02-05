@@ -6,7 +6,7 @@
     "images"
   ],
   "description": "Import multiview image groups connected via user defined tag",
-  "docker_image": "supervisely/import-export:6.73.162",
+  "docker_image": "supervisely/import-export:6.73.293",
   "main_script": "src/main.py",
   "modal_template": "src/modal.html",
   "modal_template_state": {
@@ -20,7 +20,7 @@
   "icon_cover": false,
   "icon_background": "#FFFFFF",
   "headless": true,
-  "min_instance_version": "6.11.8",
+  "min_instance_version": "6.12.28",
   "context_menu": {
     "target": [
       "files_folder",
