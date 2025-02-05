@@ -111,9 +111,9 @@ Prepare project and drag and drop it to `Team Files`.
 <img src="https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.2/drag-n-drop.gif?raw=true"/>
 
 # How To Run 
-**Step 1.** Add [Import Images Groups](https://ecosystem.supervisely.com/apps/import-images-groups) app to your team from Ecosystem
+**Step 1.** Add [Import Multiview Image Groups](https://ecosystem.supervisely.com/apps/import-images-groups) app to your team from Ecosystem
 
-<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/import-images-groups" src="https://i.imgur.com/wAiE0ld.png" width="70%"/>
+<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/import-images-groups" src="https://github.com/user-attachments/assets/1788313e-8ef3-4f42-9277-38e32aa9dfa6" width="70%"/>
 
 
 **Step 2.** Run app from the context menu of your data on Team Files page:
@@ -122,7 +122,7 @@ Prepare project and drag and drop it to `Team Files`.
 
 **Step 3.** Define group tag name in modal window and enable/disable synchronized view for images group.
 
-<img src="https://user-images.githubusercontent.com/48913536/172839236-dc831edf-f092-4d91-b183-685bddae2119.png" width="70%"/>
+<img src="https://github.com/user-attachments/assets/ba14e4ea-3236-4aee-becd-aa8c3ff686c1" width="70%"/>
 
 
 **Step 4.** Once app is started, new task will appear in workspace tasks. Wait for the app to process your data.
