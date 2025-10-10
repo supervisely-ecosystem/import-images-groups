@@ -12,7 +12,7 @@
   <a href="#Demo-Video">Demo Video</a>
 </p>
   
-[![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](https://ecosystem.supervisely.com/apps/supervisely-ecosystem/import-images-groups)
+[![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](../../../../supervisely-ecosystem/import-images-groups)
 [![](https://img.shields.io/badge/slack-chat-green.svg?logo=slack)](https://supervisely.com/slack)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/supervisely-ecosystem/import-images-groups)
 [![views](https://app.supervisely.com/img/badges/views/supervisely-ecosystem/import-images-groups.png)](https://supervisely.com)
@@ -30,7 +30,7 @@ Application key points:
 * Images will be grouped by tag's value
 * Tag value is defined by group directory name
 * Works with `.nrrd` image format (2D only)
-* Projects with `.nrrd` images format can be exported only with [Export to Supervisely format](https://ecosystem.supervisely.com/apps/export-to-supervisely-format) app
+* Projects with `.nrrd` images format can be exported only with [Export to Supervisely format](../../../../supervisely-ecosystem/export-to-supervisely-format) app
 
 # Preparation
 
@@ -111,7 +111,7 @@ Prepare project and drag and drop it to `Team Files`.
 <img src="https://github.com/supervisely-ecosystem/import-images-groups/releases/download/v0.0.2/drag-n-drop.gif?raw=true"/>
 
 # How To Run 
-**Step 1.** Add [Import Multiview Image Groups](https://ecosystem.supervisely.com/apps/import-images-groups) app to your team from Ecosystem
+**Step 1.** Add [Import Multiview Image Groups](../../../../supervisely-ecosystem/import-images-groups) app to your team from Ecosystem
 
 <img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/import-images-groups" src="https://github.com/user-attachments/assets/1788313e-8ef3-4f42-9277-38e32aa9dfa6" width="70%"/>
 
