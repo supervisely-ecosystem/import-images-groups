@@ -77,7 +77,7 @@ def check_save_path(save_path: str) -> None:
 def download_data_from_team_files(api: sly.Api, save_path: str) -> str:
     """Download data from remote directory in Team Files."""
     api.file.download_input(save_path, log_progress=True)
-    save_path = check_save_path(save_path)
+    # save_path = check_save_path(save_path)
     project_name = os.listdir(save_path)[0]
     project_path = join(save_path, project_name)
     return project_path
