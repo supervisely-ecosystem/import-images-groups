@@ -20,7 +20,7 @@
   "icon_cover": false,
   "icon_background": "#FFFFFF",
   "headless": true,
-  "min_instance_version": "6.12.28",
+  "instance_version": "6.15.60",
   "context_menu": {
     "target": [
       "files_folder",
